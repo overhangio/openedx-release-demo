@@ -43,8 +43,11 @@ jobs:
       - name: Configure tutor settings
         run: $SSH '~/.local/bin/tutor config save --set LMS_HOST=nutmeg.demo.overhang.io --set CMS_HOST=studio.nutmeg.demo.overhang.io --set ENABLE_HTTPS=true --set PLATFORM_NAME="Open edx Nutmeg Demo"'
       # Build
-      - name: Build images
-        run: $SSH '~/.local/bin/tutor images build all'
+      - name: Build openedx image
+        # TODO: for now, we don't pull nutmeg i18n strings because we have not been able to build them
+        run: $SSH '~/.local/bin/tutor images build openedx --build-arg OPENEDX_I18N_VERSION=open-release/maple.3'
+      - name: Build other images (put here images from plugins)
+        run: $SSH '~/.local/bin/tutor images build permissions'
       # Launch
       - name: Quickstart
         run: $SSH '~/.local/bin/tutor local quickstart --non-interactive'
