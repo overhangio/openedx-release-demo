@@ -35,10 +35,12 @@ jobs:
       - name: Upgrade dependencies
         run: $SSH 'pip install --user --upgrade pyyaml'
       - name: Install tutor and plugins (from source)
-        run: $SSH pip install --user --upgrade -e git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+        run: $SSH pip install --user --upgrade -e git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
+      # - name: Install plugins (from source)
+      #   run: $SSH pip install --user --upgrade -e git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
       # Configure
-      - name: Enable plugins
-        run: $SSH '~/.local/bin/tutor plugins enable mfe'
+      # - name: Enable plugins
+      #   run: $SSH '~/.local/bin/tutor plugins enable mfe'
       - name: Configure tutor settings
         run: $SSH '~/.local/bin/tutor config save --set LMS_HOST=nutmeg.demo.openedx.overhang.io --set CMS_HOST=studio.nutmeg.demo.openedx.overhang.io --set PLATFORM_NAME="Open edx Nutmeg Demo"'
       # Build
