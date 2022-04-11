@@ -42,7 +42,7 @@ jobs:
       # - name: Enable plugins
       #   run: $SSH '~/.local/bin/tutor plugins enable mfe'
       - name: Configure tutor settings
-        run: $SSH '~/.local/bin/tutor config save --set LMS_HOST=nutmeg.demo.overhang.io --set CMS_HOST=studio.nutmeg.demo.overhang.io --set PLATFORM_NAME="Open edx Nutmeg Demo"'
+        run: $SSH '~/.local/bin/tutor config save --set LMS_HOST=nutmeg.demo.overhang.io --set CMS_HOST=studio.nutmeg.demo.overhang.io --set ENABLE_HTTPS=true --set PLATFORM_NAME="Open edx Nutmeg Demo"'
       # Build
       - name: Build images
         run: $SSH '~/.local/bin/tutor images build all'
