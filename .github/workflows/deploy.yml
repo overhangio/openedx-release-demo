@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSH: ssh demo
-      # switch version to "nutmeg" once the branches have been created
-      VERSION: nightly
+      VERSION: nutmeg
     steps:
       # Install
       # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
