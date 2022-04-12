@@ -12,6 +12,7 @@ jobs:
     env:
       SSH: ssh demo
       VERSION: nutmeg
+      TUTOR: ~/.local/bin/tutor
     steps:
       # Install
       # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
@@ -31,30 +32,83 @@ jobs:
           SSH_USER: ${{ secrets.DEMO_SSH_USER }}
           SSH_KEY: ${{ secrets.DEMO_SSH_KEY }}
           SSH_HOST: ${{ secrets.DEMO_SSH_HOST }}
-      - name: Upgrade dependencies
-        run: $SSH 'pip install --user --upgrade pyyaml'
-      - name: Install tutor and plugins (from source)
-        run: $SSH pip install --user --upgrade -e git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
-      # - name: Install plugins (from source)
-      #   run: $SSH pip install --user --upgrade -e git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+      - name: Install dependencies, tutor and plugins (from source)
+        run: |
+          $SSH "#! /bin/bash -e
+            pip install --user --upgrade pyyaml
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
+            #pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+          "
+      # Backup
+      - name: Backup data
+        run: |
+          $SSH "#! /bin/bash -e
+            mkdir -p ~/apps/openedx/backup
+            if [ -d ~/.local/share/tutor/data/caddy ]
+            then
+              echo "Backing up caddy data"
+              sudo cp -r ~/.local/share/tutor/data/caddy ~/apps/openedx/backup/
+            else
+              echo "No caddy data to backup"
+            fi
+          "
+      # Clear
+      - name: Clear existing platform
+        run: |
+          $SSH "#! /bin/bash -e
+            if [ -d ~/.local/share/tutor/env ]
+            then
+              echo "Stopping tutor containers"
+              $TUTOR local stop
+            else
+              echo "No running tutor container"
+            fi
+            sudo rm -rf ~/.local/share/tutor
+            docker container prune --force
+          "
+      # Restore
+      - name: Restore some data
+        run: |
+          $SSH "#! /bin/bash -e
+            mkdir -p ~/.local/share/tutor/data/
+            if [ -d ~/apps/openedx/backup/caddy ]
+            then
+              echo "Restoring caddy backup data"
+              sudo cp -r ~/apps/openedx/backup/caddy ~/.local/share/tutor/data/
+            else
+              echo "No caddy backup data to restore"
+            fi
+          "
       # Configure
       # - name: Enable plugins
-      #   run: $SSH '~/.local/bin/tutor plugins enable mfe'
+      #   run: $SSH '$TUTOR plugins enable mfe'
       - name: Configure tutor settings
-        run: $SSH '~/.local/bin/tutor config save --set LMS_HOST=nutmeg.demo.overhang.io --set CMS_HOST=studio.nutmeg.demo.overhang.io --set ENABLE_HTTPS=true --set PLATFORM_NAME="Open edx Nutmeg Demo"'
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR config save \
+              --set LMS_HOST=nutmeg.demo.overhang.io \
+              --set CMS_HOST=studio.nutmeg.demo.overhang.io \
+              --set ENABLE_HTTPS=true \
+              --set PLATFORM_NAME='Open edx Nutmeg Demo'
+          "
       # Build
-      - name: Build openedx image
-        # TODO: for now, we don't pull nutmeg i18n strings because we have not been able to build them
-        run: $SSH '~/.local/bin/tutor images build openedx --build-arg OPENEDX_I18N_VERSION=open-release/maple.3'
-      - name: Build other images (put here images from plugins)
-        run: $SSH '~/.local/bin/tutor images build permissions'
+      - name: Build Docker images
+        run: |
+          $SSH "#! /bin/bash -e
+            # TODO: for now, we don't pull nutmeg i18n strings because we have not been able to build them
+            $TUTOR images build openedx --build-arg OPENEDX_I18N_VERSION=open-release/maple.3
+            # Build other images (put here images from plugins)
+            $TUTOR images build permissions
+          "
       # Launch
       - name: Quickstart
-        run: $SSH '~/.local/bin/tutor local quickstart --non-interactive'
+        run: $SSH "$TUTOR local quickstart --non-interactive"
       # Provision
-      - name: Create super user
-        run: $SSH '~/.local/bin/tutor local createuser --staff --superuser --password=admin admin admin@overhang.io'
-      - name: Create student user
-        run: $SSH '~/.local/bin/tutor local createuser --password=student student student@overhang.io'
+      - name: Create users
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR local createuser --staff --superuser --password=admin admin admin@overhang.io
+            $TUTOR local createuser --password=student student student@overhang.io
+          "
       - name: Import demo course
-        run: $SSH '~/.local/bin/tutor local importdemocourse'
+        run: $SSH "$TUTOR local importdemocourse"
