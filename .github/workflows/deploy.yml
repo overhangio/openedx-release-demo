@@ -96,7 +96,7 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             # TODO: for now, we don't pull nutmeg i18n strings because we have not been able to build them
-            $TUTOR images build openedx --build-arg OPENEDX_I18N_VERSION=open-release/maple.3
+            $TUTOR images build --no-cache --build-arg OPENEDX_I18N_VERSION=open-release/maple.3 openedx
             # Build other images (put here images from plugins)
             $TUTOR images build permissions
           "
