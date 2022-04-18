@@ -18,6 +18,10 @@ You may login with the following credentials:
     - email: admin@overhang.io
     - password: admin
 
+The platform is reset weekly, every Monday at 7 am UTC.
+
+The [deployment script](https://github.com/overhangio/nutmeg-demo/blob/master/.github/workflows/deploy.yml) is included in this repository. If you are working on testing the Nutmeg release and you would like to modify this script, please do feel free to open a pull request.
+
 ## Testing
 
 The deployment script can be tested with [act](https://github.com/nektos/act). Define your secrets::
