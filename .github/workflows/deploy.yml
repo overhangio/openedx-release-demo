@@ -38,6 +38,7 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade pyyaml
+            pip install --user --upgrade edx-event-routing-backends
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
           "
