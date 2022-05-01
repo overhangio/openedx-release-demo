@@ -40,7 +40,7 @@ jobs:
             pip install --user --upgrade pyyaml
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/ghassanmas/tutor-forum.git@$VERSION#egg=tutor-forum
           "
       # Backup
       - name: Backup data
