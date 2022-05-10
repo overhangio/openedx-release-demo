@@ -41,6 +41,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/ghassanmas/tutor-forum.git@$VERSION#egg=tutor-forum
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
           "
       # Backup
       - name: Backup data
@@ -84,7 +85,7 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        run: $SSH "$TUTOR plugins enable mfe forum"
+        run: $SSH "$TUTOR plugins enable mfe forum notes"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
