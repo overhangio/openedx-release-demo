@@ -96,6 +96,12 @@ jobs:
               --set ENABLE_HTTPS=true \
               --set PLATFORM_NAME='Open edx Nutmeg Demo'
           "
+      - name: create a plugin to resolve course visibility
+        run: |
+          $SSH "mkdir -p $($TUTOR plugins printroot)"
+          $SSH "wget https://raw.githubusercontent.com/ghassanmas/nutmeg-demo/course-visibility/tutor-plugins/courses-visibility.py -P $($TUTOR plugins printroot)"
+          $SSH "$TUTOR plugins enable courses-visibility"
+          $SSH "$TUTOR config save"
       # Build
       - name: Build Docker images
         run: |
