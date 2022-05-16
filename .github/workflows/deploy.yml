@@ -96,6 +96,11 @@ jobs:
               --set ENABLE_HTTPS=true \
               --set PLATFORM_NAME='Open edx Nutmeg Demo'
           "
+      - name: Install extra xblocks/packages
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR config save --set 'OPENEDX_EXTRA_PIP_REQUIREMENTS=[\"openedx-scorm-xblock<14.0.0,>=13.0.0\", \"git+https://github.com/ubc/ubcpi@757e8903395c749dc8bd9decc314377fd63d0e5b\"]'
+          "
       # Build
       - name: Build Docker images
         run: |
