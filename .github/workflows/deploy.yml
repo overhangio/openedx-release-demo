@@ -121,3 +121,9 @@ jobs:
           "
       - name: Import demo course
         run: $SSH "$TUTOR local importdemocourse"
+
+      - name: Import test course & libraries
+        run: |
+            git checkout https://github.com/openedx/openedx-test-course
+            cd openedx-test-course
+            make import
