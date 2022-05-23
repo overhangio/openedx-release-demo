@@ -124,6 +124,8 @@ jobs:
 
       - name: Import test course & libraries
         run: |
+          $SSH "#! /bin/bash -e
             git checkout https://github.com/openedx/openedx-test-course
             cd openedx-test-course
-            make import
+            make import TUTOR=$TUTOR
+          "
