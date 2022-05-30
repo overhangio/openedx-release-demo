@@ -110,6 +110,9 @@ jobs:
             # note: we removed the --no-cache option to avoid long deploy times
             $TUTOR images build all
           "
+      # Initialize codejail
+      - name: Init
+        run: $SSH "$TUTOR local init --limit=codejail"
       # Launch
       - name: Quickstart
         run: $SSH "$TUTOR local quickstart --non-interactive"
