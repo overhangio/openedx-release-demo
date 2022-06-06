@@ -119,6 +119,11 @@ jobs:
       - name: Quickstart
         run: $SSH "$TUTOR local quickstart --non-interactive"
       # Provision
+      - name: Set theme
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR local settheme indigo
+          "
       - name: Create users
         run: |
           $SSH "#! /bin/bash -e
