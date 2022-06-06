@@ -105,6 +105,9 @@ jobs:
           $SSH "#! /bin/bash -e
             $TUTOR config save --set 'OPENEDX_EXTRA_PIP_REQUIREMENTS=[\"openedx-scorm-xblock<14.0.0,>=13.0.0\", \"git+https://github.com/ubc/ubcpi@757e8903395c749dc8bd9decc314377fd63d0e5b\", \"edx-event-routing-backends>=5.2.0,<6.0.0\"]'
           "
+      - name: Configure xqueue grader password
+        run: |
+          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
       # Build
       - name: Build Docker images
         run: |
