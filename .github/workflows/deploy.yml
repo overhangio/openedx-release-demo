@@ -47,6 +47,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
           "
       # Backup
       - name: Backup data
@@ -90,7 +91,7 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        run: $SSH "$TUTOR plugins enable mfe forum notes discovery ecommerce codejail android indigo"
+        run: $SSH "$TUTOR plugins enable mfe forum notes discovery ecommerce codejail android indigo xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
