@@ -12,43 +12,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SSH: ssh demo
-      VERSION: nutmeg
+      SSH: ssh -o StrictHostKeyChecking=no -i ~/.ssh/demo.key ${{ secrets.DEMO_SSH_USER }}@${{ secrets.DEMO_SSH_HOST }}
+      VERSION: olive
       TUTOR: ~/.local/bin/tutor
     steps:
-      # Install
-      # https://blog.benoitblanchon.fr/github-action-run-ssh-commands/
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/demo.key
           chmod 600 ~/.ssh/demo.key
-          cat >>~/.ssh/config <<END
-          Host demo
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/demo.key
-            StrictHostKeyChecking no
-          END
         env:
-          SSH_USER: ${{ secrets.DEMO_SSH_USER }}
           SSH_KEY: ${{ secrets.DEMO_SSH_KEY }}
-          SSH_HOST: ${{ secrets.DEMO_SSH_HOST }}
       - name: Install dependencies, tutor and plugins (from source)
         run: |
           $SSH "#! /bin/bash -e
-            pip install --user --upgrade pyyaml
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/ghassanmas/tutor-forum.git@$VERSION#egg=tutor-forum
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/EDUlib/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-minio.git@$VERSION#egg=tutor-minio
           "
       # Backup
       - name: Backup data
@@ -97,19 +75,19 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             $TUTOR config save \
-              --set LMS_HOST=nutmeg.demo.overhang.io \
-              --set CMS_HOST=studio.nutmeg.demo.overhang.io \
+              --set LMS_HOST=$VERSION.demo.overhang.io \
+              --set CMS_HOST=studio.$VERSION.demo.overhang.io \
               --set ENABLE_HTTPS=true \
-              --set PLATFORM_NAME='Open edx Nutmeg Demo'
+              --set PLATFORM_NAME='Open edx $VERSION Demo'
           "
-      - name: Install extra xblocks/packages
-        run: |
-          $SSH "#! /bin/bash -e
-            $TUTOR config save --set 'OPENEDX_EXTRA_PIP_REQUIREMENTS=[\"openedx-scorm-xblock<14.0.0,>=13.0.0\", \"git+https://github.com/ubc/ubcpi@757e8903395c749dc8bd9decc314377fd63d0e5b\", \"edx-event-routing-backends>=5.2.0,<6.0.0\"]'
-          "
-      - name: Configure xqueue grader password
-        run: |
-          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+      # - name: Install extra xblocks/packages
+      #   run: |
+      #     $SSH "#! /bin/bash -e
+      #       $TUTOR config save --set 'OPENEDX_EXTRA_PIP_REQUIREMENTS=[\"openedx-scorm-xblock<15.0.0,>=14.0.0\", \"git+https://github.com/ubc/ubcpi@757e8903395c749dc8bd9decc314377fd63d0e5b\", \"edx-event-routing-backends>=5.2.0,<6.0.0\"]'
+          # "
+      # - name: Configure xqueue grader password
+      #   run: |
+      #     $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
       # Build
       - name: Build Docker images
         run: |
@@ -117,18 +95,18 @@ jobs:
             # note: we removed the --no-cache option to avoid long deploy times
             $TUTOR images build all
           "
-      # Initialize codejail
-      - name: Init
-        run: $SSH "$TUTOR local init --limit=codejail"
+      # # Initialize codejail
+      # - name: Init
+      #   run: $SSH "$TUTOR local init --limit=codejail"
       # Launch
       - name: Quickstart
         run: $SSH "$TUTOR local quickstart --non-interactive"
       # Provision
-      - name: Set theme
-        run: |
-          $SSH "#! /bin/bash -e
-            $TUTOR local settheme indigo
-          "
+      # - name: Set theme
+      #   run: |
+      #     $SSH "#! /bin/bash -e
+      #       $TUTOR local settheme indigo
+      #     "
       - name: Create users
         run: |
           $SSH "#! /bin/bash -e
@@ -138,12 +116,12 @@ jobs:
       - name: Import demo course
         run: $SSH "$TUTOR local importdemocourse"
 
-      - name: Import test course & libraries
-        run: |
-          $SSH "#! /bin/bash -e
-            cd ~/apps/openedx
-            rm -rf openedx-test-course
-            git clone https://github.com/openedx/openedx-test-course
-            cd openedx-test-course
-            make import TUTOR=$TUTOR
-          "
+      # - name: Import test course & libraries
+      #   run: |
+      #     $SSH "#! /bin/bash -e
+      #       cd ~/apps/openedx
+      #       rm -rf openedx-test-course
+      #       git clone https://github.com/openedx/openedx-test-course
+      #       cd openedx-test-course
+      #       make import TUTOR=$TUTOR
+      #     "
