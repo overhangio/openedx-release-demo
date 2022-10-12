@@ -69,8 +69,8 @@ jobs:
             fi
           "
       # Configure
-      - name: Enable plugins
-        run: $SSH "$TUTOR plugins enable mfe forum notes discovery ecommerce codejail android indigo xqueue minio"
+      #- name: Enable plugins
+      #  run: $SSH "$TUTOR plugins enable mfe forum notes discovery ecommerce codejail android indigo xqueue minio"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
