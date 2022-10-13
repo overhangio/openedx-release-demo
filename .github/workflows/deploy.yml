@@ -23,11 +23,13 @@ jobs:
           chmod 600 ~/.ssh/demo.key
         env:
           SSH_KEY: ${{ secrets.DEMO_SSH_KEY }}
+      # Server system dependencies, to be run separately
+      # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
           "
       # Backup
       - name: Backup data
@@ -76,8 +78,8 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             $TUTOR config save \
-              --set LMS_HOST=$VERSION.demo.overhang.io \
-              --set CMS_HOST=studio.$VERSION.demo.overhang.io \
+              --set LMS_HOST=${{ secrets.DEMO_SSH_HOST }} \
+              --set CMS_HOST=studio.${{ secrets.DEMO_SSH_HOST }} \
               --set ENABLE_HTTPS=true \
               --set PLATFORM_NAME='Open edx $VERSION Demo'
           "
