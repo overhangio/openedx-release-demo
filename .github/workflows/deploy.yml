@@ -30,6 +30,8 @@ jobs:
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
           "
       # Backup
       - name: Backup data
@@ -73,7 +75,7 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        run: $SSH "$TUTOR plugins enable mfe"
+        run: $SSH "$TUTOR plugins enable mfe indigo android"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -105,11 +107,11 @@ jobs:
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
       # Provision
-      # - name: Set theme
-      #   run: |
-      #     $SSH "#! /bin/bash -e
-      #       $TUTOR local settheme indigo
-      #     "
+      - name: Set theme
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR local settheme indigo
+          "
       - name: Create users
         run: |
           $SSH "#! /bin/bash -e
