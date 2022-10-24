@@ -122,12 +122,12 @@ jobs:
       - name: Import demo course
         run: $SSH "$TUTOR local importdemocourse"
 
-      # - name: Import test course & libraries
-      #   run: |
-      #     $SSH "#! /bin/bash -e
-      #       cd ~/apps/openedx
-      #       rm -rf openedx-test-course
-      #       git clone https://github.com/openedx/openedx-test-course
-      #       cd openedx-test-course
-      #       make import TUTOR=$TUTOR
-      #     "
+      - name: Import test course & libraries
+        run: |
+          $SSH "#! /bin/bash -e
+            cd ~/apps/openedx
+            rm -rf openedx-test-course
+            git clone https://github.com/openedx/openedx-test-course
+            cd openedx-test-course
+            make import TUTOR=$TUTOR
+          "
