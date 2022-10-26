@@ -34,6 +34,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
           "
       # Backup
       - name: Backup data
@@ -77,7 +78,7 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        run: $SSH "$TUTOR plugins enable mfe indigo android forum notes"
+        run: $SSH "$TUTOR plugins enable mfe indigo android forum notes codejail"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -103,8 +104,8 @@ jobs:
             $TUTOR images build all
           "
       # # Initialize codejail
-      # - name: Init
-      #   run: $SSH "$TUTOR local init --limit=codejail"
+      - name: Init
+        run: $SSH "$TUTOR local init --limit=codejail"
       # Launch
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
