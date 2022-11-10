@@ -24,10 +24,23 @@ The platform is reset weekly, every Monday at 7 am UTC.
 
 The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/master/.github/workflows/deploy.yml) is included in this repository. If you are working on testing the latest release and you would like to modify this script, please do open a pull request.
 
-<!-- The demo platform includes the xqueue external grader which can be accessed with the following credentials:
+The following plugins are enabled on the demo platform:
 
-- username: `lms`
-- password: `xqueuepassword` -->
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/66) by @ghassanmas)
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/38) by @regisb)
+- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/5) by @regisb): app can be downloaded from https://mobile.olive.demo.overhang.io/app.apk.
+- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/11) by @ghassanmas)
+- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/18) by @jfavellar90)
+- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/28) by @mariajgrimaldi)
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/36) by @regisb)
+- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/35) by @regisb): admin user can login with the credentials above at https://ecommerce.olive.demo.overhang.io/
+
+The following plugins have not been installed, yet:
+
+- [tutor-minio](https://github.com/overhangio/tutor-minio/)
+- [tutor-xqueue](https://github.com/overhangio/tutor-xqueue/)
+
+If you are interested in upgrading these plugins to Olive, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
 ## Testing
 
