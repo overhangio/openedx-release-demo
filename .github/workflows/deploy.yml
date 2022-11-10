@@ -126,11 +126,15 @@ jobs:
             $TUTOR local createuser --staff --superuser --password=admin admin admin@overhang.io
             $TUTOR local createuser --password=student student student@overhang.io
           "
-      - name: Create ecommerce admin user
-        run: |
-          $SSH "#! /bin/bash -e
-            $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
-          "
+      # Unfortunately ecommerce user creation may not be automated because the admin
+      # user needs to login from the frontend first. We could use the ecommerce
+      # createsuperuser management command instead, but it reads the password
+      # interactively from the user, which is not going to work in this CI.
+      # - name: Create ecommerce admin user
+      #   run: |
+      #     $SSH "#! /bin/bash -e
+      #       $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
+      #     "
       - name: Import demo course
         run: $SSH "$TUTOR local importdemocourse"
 
