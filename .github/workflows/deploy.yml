@@ -37,6 +37,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
           "
       # Backup
       - name: Backup data
@@ -80,7 +81,7 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        run: $SSH "$TUTOR plugins enable mfe indigo android forum notes codejail discovery ecommerce"
+        run: $SSH "$TUTOR plugins enable mfe indigo android forum notes codejail discovery ecommerce xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -98,9 +99,9 @@ jobs:
       #     $SSH "#! /bin/bash -e
       #       $TUTOR config save --set 'OPENEDX_EXTRA_PIP_REQUIREMENTS=[\"openedx-scorm-xblock<15.0.0,>=14.0.0\", \"git+https://github.com/ubc/ubcpi@757e8903395c749dc8bd9decc314377fd63d0e5b\", \"edx-event-routing-backends>=5.2.0,<6.0.0\"]'
           # "
-      # - name: Configure xqueue grader password
-      #   run: |
-      #     $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+      - name: Configure xqueue grader password
+        run: |
+          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
       # Build
       - name: Build Docker images
         run: |

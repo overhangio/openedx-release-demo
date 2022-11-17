@@ -31,6 +31,7 @@ The following plugins are enabled on the demo platform:
 - tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/5) by @regisb): app can be downloaded from https://mobile.olive.demo.overhang.io/app.apk.
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/11) by @ghassanmas)
 - tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/18) by @jfavellar90)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/13) by @jfavellar90)
 - tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/28) by @mariajgrimaldi)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/36) by @regisb)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/35) by @regisb): admin user can login with the credentials above at https://ecommerce.olive.demo.overhang.io/
@@ -38,7 +39,6 @@ The following plugins are enabled on the demo platform:
 The following plugins have not been installed, yet:
 
 - [tutor-minio](https://github.com/overhangio/tutor-minio/)
-- [tutor-xqueue](https://github.com/overhangio/tutor-xqueue/)
 
 If you are interested in upgrading these plugins to Olive, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
