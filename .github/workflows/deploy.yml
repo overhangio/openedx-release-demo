@@ -117,13 +117,13 @@ jobs:
       - name: "Provision: Set theme"
         run: |
           $SSH "#! /bin/bash -e
-            $TUTOR local settheme indigo
+            $TUTOR local do settheme indigo
           "
       - name: "Provision: Create users"
         run: |
           $SSH "#! /bin/bash -e
-            $TUTOR local createuser --staff --superuser --password=admin admin admin@overhang.io
-            $TUTOR local createuser --password=student student student@overhang.io
+            $TUTOR local do createuser --staff --superuser --password=admin admin admin@overhang.io
+            $TUTOR local do createuser --password=student student student@overhang.io
           "
       # Unfortunately ecommerce user creation may not be automated because the admin
       # user needs to login from the frontend first. We could use the ecommerce
@@ -135,7 +135,7 @@ jobs:
       #       $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
       #     "
       - name: "Provision: Import demo course"
-        run: $SSH "$TUTOR local importdemocourse"
+        run: $SSH "$TUTOR local do importdemocourse"
 
       - name: "Provision: Import test course & libraries"
         run: |
