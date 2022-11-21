@@ -109,19 +109,17 @@ jobs:
             # note: we removed the --no-cache option to avoid long deploy times
             $TUTOR images build all
           "
-      # # Initialize codejail
-      - name: Init
-        run: $SSH "$TUTOR local init --limit=codejail"
-      # Launch
+      - name: Initialize codejail
+        run: $SSH "$TUTOR local do init --limit=codejail"
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
       # Provision
-      - name: Set theme
+      - name: Provision: Set theme
         run: |
           $SSH "#! /bin/bash -e
             $TUTOR local settheme indigo
           "
-      - name: Create users
+      - name: Provision: Create users
         run: |
           $SSH "#! /bin/bash -e
             $TUTOR local createuser --staff --superuser --password=admin admin admin@overhang.io
@@ -136,10 +134,10 @@ jobs:
       #     $SSH "#! /bin/bash -e
       #       $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
       #     "
-      - name: Import demo course
+      - name: Provision: Import demo course
         run: $SSH "$TUTOR local importdemocourse"
 
-      - name: Import test course & libraries
+      - name: Provision: Import test course & libraries
         run: |
           $SSH "#! /bin/bash -e
             cd ~/apps/openedx
