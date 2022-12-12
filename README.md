@@ -38,7 +38,7 @@ The following plugins are enabled on the demo platform:
 
 The following plugins have not been installed, yet:
 
-- [tutor-minio](https://github.com/overhangio/tutor-minio/)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/20) by @regisb)
 
 If you are interested in upgrading these plugins to Olive, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
