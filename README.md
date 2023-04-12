@@ -1,13 +1,13 @@
 # Open edX release demo platform CD
 
-This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of October 11th 2022 it is used to deploy and configure a test instance of the Olive release.
+This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of October 11th 2022 it is used to deploy and configure a test instance of the Palm release.
 
 ⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss.openedx.org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
 
 URLs:
 
-- LMS: https://olive.demo.overhang.io
-- Studio: https://studio.olive.demo.overhang.io
+- LMS: https://palm.demo.overhang.io
+- Studio: https://studio.palm.demo.overhang.io
 
 You may login with the following credentials:
 
@@ -26,21 +26,21 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/66) by @ghassanmas)
-- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/38) by @regisb)
-- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/5) by @regisb): app can be downloaded from https://mobile.olive.demo.overhang.io/app.apk.
-- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/11) by @ghassanmas)
-- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/18) by @jfavellar90)
-- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/13) by @jfavellar90)
-- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/28) by @mariajgrimaldi)
-- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/36) by @regisb)
-- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/35) by @regisb): admin user can login with the credentials above at https://ecommerce.olive.demo.overhang.io/
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
 
 The following plugins have not been installed, yet:
 
-- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/20) by @regisb)
+- tutor-minio
+- tutor-indigo
+- tutor-android
+- tutor-forum
+- tutor-notes
+- tutor-xqueue
+- tutor-contrib-codejail
+- tutor-discovery
+- tutor-ecommerce
 
-If you are interested in upgrading these plugins to Olive, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
+If you are interested in upgrading these plugins to Palm, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
 ## Testing
 
