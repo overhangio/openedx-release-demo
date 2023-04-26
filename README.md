@@ -27,13 +27,13 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 The following plugins are enabled on the demo platform:
 
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
+- tutor-forum ([PR])(https://github.com/overhangio/tutor-forum/pull/22 by @ghassanmas)
 
 The following plugins have not been installed, yet:
 
 - tutor-minio
 - tutor-indigo
 - tutor-android
-- tutor-forum
 - tutor-notes
 - tutor-xqueue
 - tutor-contrib-codejail
