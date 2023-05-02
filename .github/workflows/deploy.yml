@@ -146,5 +146,10 @@ jobs:
             rm -rf openedx-test-course
             git clone https://github.com/openedx/openedx-test-course
             cd openedx-test-course
-            make import TUTOR=$TUTOR
+
+            $TUTOR local run -v $(pwd):/openedx/data/openedx-test-course cms ./manage.py cms import_content_library /openedx/data/openedx-test-course/dist/test-problem-bank.tar.gz admin
+
+            $TUTOR local run -v $(pwd):/openedx/data/openedx-test-course cms ./manage.py cms import /openedx/data openedx-test-course/test-course/course
+
+            $TUTOR local run cms ./manage.py cms reindex_course --all --setup
           "
