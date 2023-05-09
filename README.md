@@ -29,11 +29,11 @@ The following plugins are enabled on the demo platform:
 - tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/6) by @regisb): the Android app can be downloaded from https://mobile.palm.demo.overhang.io/app.apk.
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/22) by @ghassanmas)
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/43) by @gondaljutt)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/24) by @FahadKhalid210)
 
 The following plugins have not been installed, yet:
 
-- tutor-minio
-- tutor-indigo
 - tutor-notes
 - tutor-xqueue
 - tutor-contrib-codejail

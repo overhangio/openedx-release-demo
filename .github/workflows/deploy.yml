@@ -30,9 +30,10 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
-            # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/gondaljutt/tutor-indigo.git@jalal/palm#egg=tutor-indigo
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/FahadKhalid210/tutor-minio.git@fahadkhalid210/palm#egg=tutor-minio
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
@@ -82,8 +83,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: indigo notes codejail discovery ecommerce xqueue
-        run: $SSH "$TUTOR plugins enable android mfe forum"
+        # missing plugins: notes codejail discovery ecommerce xqueue
+        run: $SSH "$TUTOR plugins enable android indigo mfe minio forum"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
