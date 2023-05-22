@@ -27,16 +27,17 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 The following plugins are enabled on the demo platform:
 
 - tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/6) by @regisb): the Android app can be downloaded from https://mobile.palm.demo.overhang.io/app.apk.
+- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/2) by @Faraz32123)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/22) by @ghassanmas)
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/43) by @gondaljutt)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/24) by @FahadKhalid210)
+- tutor-contrib-codejail ([Branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/palm))
 
 The following plugins have not been installed, yet:
 
 - tutor-notes
 - tutor-xqueue
-- tutor-contrib-codejail
 - tutor-discovery
 - tutor-ecommerce
 
