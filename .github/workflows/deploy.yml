@@ -31,7 +31,9 @@ jobs:
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
-            #pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/edly-io/tutor-discovery.git@$VERSION#egg=tutor-discovery
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/gondaljutt/tutor-indigo.git@jalal/palm#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/FahadKhalid210/tutor-minio.git@fahadkhalid210/palm#egg=tutor-minio
@@ -84,8 +86,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: credentials notes discovery ecommerce xqueue
-        run: $SSH "$TUTOR plugins enable android codejail forum indigo mfe minio"
+        # missing plugins: notes ecommerce xqueue
+        run: $SSH "$TUTOR plugins enable android cairn codejail credentials discovery forum indigo mfe minio"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e

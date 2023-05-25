@@ -27,10 +27,12 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 The following plugins are enabled on the demo platform:
 
 - tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/6) by @regisb): the Android app can be downloaded from https://mobile.palm.demo.overhang.io/app.apk.
+- tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/1) by @regisb)
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/2) by @Faraz32123)
-- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/39) by @Faraz32123)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/22) by @ghassanmas)
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/43) by @gondaljutt)
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/24) by @FahadKhalid210)
 - tutor-contrib-codejail ([Branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/palm))
 
@@ -38,7 +40,6 @@ The following plugins have not been installed, yet:
 
 - tutor-notes
 - tutor-xqueue
-- tutor-discovery
 - tutor-ecommerce
 
 If you are interested in upgrading these plugins to Palm, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
