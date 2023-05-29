@@ -24,6 +24,14 @@ jobs:
           chmod 600 ~/.ssh/demo.key
         env:
           SSH_KEY: ${{ secrets.DEMO_SSH_KEY }}
+      - name: Upgrade python requirements
+        # Older versions of pip are affected by this issue which prevents us from
+        # installing in editable mode in ~/.local:
+        # https://github.com/pypa/pip/issues/7953
+        run: |
+          $SSH "#! /bin/bash -e
+            pip install --user --upgrade pip==23.1.2 setuptools
+          "
       # Server system dependencies, to be run separately
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
