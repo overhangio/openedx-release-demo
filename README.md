@@ -34,12 +34,11 @@ The following plugins are enabled on the demo platform:
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/43) by @gondaljutt)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/24) by @FahadKhalid210)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-notes/pull/16) by @ jfavellar90)
 - tutor-contrib-codejail ([Branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/palm))
 
 The following plugins have not been installed, yet:
 
-- tutor-notes
-- tutor-xqueue
 - tutor-ecommerce
 
 If you are interested in upgrading these plugins to Palm, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).

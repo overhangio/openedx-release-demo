@@ -42,15 +42,14 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/edly-io/tutor-discovery.git@$VERSION#egg=tutor-discovery
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/gondaljutt/tutor-indigo.git@jalal/palm#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/FahadKhalid210/tutor-minio.git@fahadkhalid210/palm#egg=tutor-minio
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
-            # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
-            # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
             # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
-            # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
           "
       # Backup
       - name: Backup data
@@ -94,8 +93,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: notes ecommerce xqueue
-        run: $SSH "$TUTOR plugins enable android cairn codejail credentials discovery forum indigo mfe minio"
+        # missing plugins: ecommerce
+        run: $SSH "$TUTOR plugins enable android cairn codejail credentials discovery forum indigo mfe minio notes xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -108,14 +107,14 @@ jobs:
       - name: Install extra xblocks/packages
         run: |
           $SSH "#! /bin/bash -e
-            $TUTOR config save --set 'OPENEDX_EXTRA_PIP_REQUIREMENTS=[\"edx-event-routing-backends>=5.3.0,<6.0.0\"]'
+            $TUTOR config save --append 'OPENEDX_EXTRA_PIP_REQUIREMENTS=edx-event-routing-backends>=5.3.0,<6.0.0'
           "
       #     $SSH "#! /bin/bash -e
       #       $TUTOR config save --set 'OPENEDX_EXTRA_PIP_REQUIREMENTS=[\"openedx-scorm-xblock<15.0.0,>=14.0.0\", \"git+https://github.com/ubc/ubcpi@757e8903395c749dc8bd9decc314377fd63d0e5b\", \"edx-event-routing-backends>=5.2.0,<6.0.0\"]'
           # "
-      # - name: Configure xqueue grader password
-      #   run: |
-      #     $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+      - name: Configure xqueue grader password
+        run: |
+          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
       # Build
       - name: Build Docker images
         run: |
@@ -128,11 +127,11 @@ jobs:
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
       # Provision
-      # - name: "Provision: Set theme"
-      #   run: |
-      #     $SSH "#! /bin/bash -e
-      #       $TUTOR local do settheme indigo
-      #     "
+      - name: "Provision: Set theme"
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR local do settheme indigo
+          "
       - name: "Provision: Create users"
         run: |
           $SSH "#! /bin/bash -e
