@@ -42,6 +42,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/edly-io/tutor-discovery.git@$VERSION#egg=tutor-discovery
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/edly-io/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/gondaljutt/tutor-indigo.git@jalal/palm#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
@@ -49,7 +50,6 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
-            # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
           "
       # Backup
       - name: Backup data
@@ -93,8 +93,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: ecommerce
-        run: $SSH "$TUTOR plugins enable android cairn codejail credentials discovery forum indigo mfe minio notes xqueue"
+        # missing plugins: none
+        run: $SSH "$TUTOR plugins enable android cairn codejail credentials discovery ecommerce forum indigo mfe minio notes xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -142,11 +142,11 @@ jobs:
       # user needs to login from the frontend first. We could use the ecommerce
       # createsuperuser management command instead, but it reads the password
       # interactively from the user, which is not going to work in this CI.
-      # - name: Create ecommerce admin user
-      #   run: |
-      #     $SSH "#! /bin/bash -e
-      #       $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
-      #     "
+      - name: Create ecommerce admin user
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
+          "
       - name: "Provision: Import demo course"
         run: $SSH "$TUTOR local do importdemocourse"
 

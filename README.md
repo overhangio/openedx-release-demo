@@ -30,11 +30,13 @@ The following plugins are enabled on the demo platform:
 - tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/1) by @regisb)
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/2) by @Faraz32123)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/39) by @Faraz32123)
+- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/41) by @Faraz32123)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/22) by @ghassanmas)
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/43) by @gondaljutt)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/24) by @FahadKhalid210)
-- tutor-xqueue ([PR](https://github.com/overhangio/tutor-notes/pull/16) by @ jfavellar90)
+- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/23) by @jfavellar90)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-notes/pull/16) by @jfavellar90)
 - tutor-contrib-codejail ([Branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/palm))
 
 The following plugins have not been installed, yet:
