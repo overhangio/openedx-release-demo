@@ -93,8 +93,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: none
-        run: $SSH "$TUTOR plugins enable android cairn codejail credentials discovery ecommerce forum indigo mfe minio notes xqueue"
+        # missing plugins: ecommerce
+        run: $SSH "$TUTOR plugins enable android cairn codejail credentials discovery forum indigo mfe minio notes xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -142,11 +142,11 @@ jobs:
       # user needs to login from the frontend first. We could use the ecommerce
       # createsuperuser management command instead, but it reads the password
       # interactively from the user, which is not going to work in this CI.
-      - name: Create ecommerce admin user
-        run: |
-          $SSH "#! /bin/bash -e
-            $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
-          "
+      #- name: Create ecommerce admin user
+      #  run: |
+      #    $SSH "#! /bin/bash -e
+      #      $TUTOR local run ecommerce ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.filter(email='admin@overhang.io').update(is_staff=True, is_superuser=True)"
+      #    "
       - name: "Provision: Import demo course"
         run: $SSH "$TUTOR local do importdemocourse"
 
