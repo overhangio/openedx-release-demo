@@ -36,7 +36,7 @@ The following plugins are enabled on the demo platform:
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/120) by @regisb)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/24) by @FahadKhalid210)
 - tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/23) by @jfavellar90)
-- tutor-xqueue ([PR](https://github.com/overhangio/tutor-notes/pull/16) by @jfavellar90)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/16) by @jfavellar90)
 - tutor-contrib-codejail ([Branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/palm))
 
 <!-- The following plugins have not been installed, yet: -->
