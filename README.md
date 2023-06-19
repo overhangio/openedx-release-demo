@@ -1,5 +1,7 @@
 # Open edX release demo platform CD
 
+⚠ THIS REPO IS TEMPORARILY ARCHIVED ⚠  It was meant to test the deployment of the Palm release. Now that Palm is out, it is no longer necessary to make changes here. See you for Quince!
+
 This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of October 11th 2022 it is used to deploy and configure a test instance of the Palm release.
 
 ⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss.openedx.org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
