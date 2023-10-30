@@ -27,6 +27,7 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 The following plugins are enabled on the demo platform:
 
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/156) by @regisb)
+- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/28) by @ghassanmas)
 
 The following plugins have not been installed, yet:
 
@@ -35,7 +36,6 @@ The following plugins have not been installed, yet:
 - [tutor-credentials](https://github.com/overhangio/tutor-credentials)
 - [tutor-discovery](https://github.com/overhangio/tutor-discovery)
 - [tutor-ecommerce](https://github.com/overhangio/tutor-ecommerce)
-- [tutor-forum](https://github.com/overhangio/tutor-forum)
 - [tutor-indigo](https://github.com/overhangio/tutor-indigo)
 - [tutor-minio](https://github.com/overhangio/tutor-minio)
 - [tutor-notes](https://github.com/overhangio/tutor-notes)

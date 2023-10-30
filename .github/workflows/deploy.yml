@@ -39,6 +39,7 @@ jobs:
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
           "
       # Backup
       - name: Backup data
@@ -83,7 +84,7 @@ jobs:
       # Configure
       - name: Enable plugins
         # missing plugins: none
-        run: $SSH "$TUTOR plugins enable mfe"
+        run: $SSH "$TUTOR plugins enable mfe forum"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
