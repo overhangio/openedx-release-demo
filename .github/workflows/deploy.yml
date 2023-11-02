@@ -107,7 +107,7 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             # note: we removed the --no-cache option to avoid long deploy times
-            $TUTOR images build all
+            $TUTOR images build --no-cache all
           "
       # - name: Initialize codejail
       #   run: $SSH "$TUTOR local do init --limit=codejail"
