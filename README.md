@@ -28,14 +28,15 @@ The following plugins are enabled on the demo platform:
 
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/156) by @regisb)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/28) by @ghassanmas)
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/50) by @ziafazal)
+- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/47) by @ziafazal)
+
 
 The following plugins have not been installed, yet:
 
 - [tutor-android](https://github.com/overhangio/tutor-android)
 - [tutor-cairn](https://github.com/overhangio/tutor-cairn)
 - [tutor-credentials](https://github.com/overhangio/tutor-credentials)
-- [tutor-discovery](https://github.com/overhangio/tutor-discovery)
-- [tutor-ecommerce](https://github.com/overhangio/tutor-ecommerce)
 - [tutor-indigo](https://github.com/overhangio/tutor-indigo)
 - [tutor-minio](https://github.com/overhangio/tutor-minio)
 - [tutor-notes](https://github.com/overhangio/tutor-notes)
