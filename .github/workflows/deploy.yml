@@ -88,7 +88,9 @@ jobs:
       # Configure
       - name: Enable plugins
         # missing plugins: none
-        run: $SSH "$TUTOR plugins enable mfe forum discovery ecommerce notes xqueue"
+        # TODO temporarily disable ecommerce, as the payment MFE does not build
+        #run: $SSH "$TUTOR plugins enable mfe forum discovery ecommerce notes xqueue"
+        run: $SSH "$TUTOR plugins enable mfe forum discovery notes xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
