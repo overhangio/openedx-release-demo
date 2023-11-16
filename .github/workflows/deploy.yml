@@ -40,8 +40,6 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
           "
@@ -88,9 +86,7 @@ jobs:
       # Configure
       - name: Enable plugins
         # missing plugins: none
-        # TODO temporarily disable ecommerce, as the payment MFE does not build
-        #run: $SSH "$TUTOR plugins enable mfe forum discovery ecommerce notes xqueue"
-        run: $SSH "$TUTOR plugins enable mfe forum discovery notes xqueue"
+        run: $SSH "$TUTOR plugins enable mfe forum notes xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
