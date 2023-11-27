@@ -44,6 +44,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
           "
       # Backup
       - name: Backup data
@@ -88,7 +89,7 @@ jobs:
       # Configure
       - name: Enable plugins
         # missing plugins: none
-        run: $SSH "$TUTOR plugins enable mfe forum notes xqueue discovery ecommerce"
+        run: $SSH "$TUTOR plugins enable mfe forum notes xqueue discovery ecommerce indigo"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
