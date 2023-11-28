@@ -33,11 +33,12 @@ The following plugins are enabled on the demo platform:
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/50) by @ziafazal)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/47) by @ziafazal)
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/14) by @Talha-Rizwan) 
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/51) by @hinakhadim)
+
 The following plugins have not been installed, yet:
 
 - [tutor-android](https://github.com/overhangio/tutor-android)
 - [tutor-cairn](https://github.com/overhangio/tutor-cairn)
-- [tutor-indigo](https://github.com/overhangio/tutor-indigo)
 - [tutor-minio](https://github.com/overhangio/tutor-minio)
 - [tutor-contrib-codejail](https://github.com/eduNEXT/tutor-contrib-codejail)
 
