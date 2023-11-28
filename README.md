@@ -26,17 +26,18 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/156) by @regisb)
-- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/28) by @ghassanmas)
-- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/29) by @jfavellar90)
-- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/25) by @jfavellar90)
-- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/50) by @ziafazal)
-- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/47) by @ziafazal)
-- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/51) by @hinakhadim)
-- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/14) by @Talha-Rizwan)
-- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/31) by @FahadKhalid210)
 - tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/20/) by @FahadKhalid210)
 - tutor-contrib-codejail ([branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/quince) by @MaferMazu)
+- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/14) by @Talha-Rizwan)
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/50) by @ziafazal)
+- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/47) by @ziafazal)
+- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/28) by @ghassanmas)
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/51) by @hinakhadim)
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/156) by @regisb)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/31) by @FahadKhalid210)
+- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/29) by @jfavellar90)
+- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/10) by @Abdul-Muqadim-Arbisoft)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/25) by @jfavellar90)
 
 The following plugins have not been installed, yet:
 
