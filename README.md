@@ -36,11 +36,11 @@ The following plugins are enabled on the demo platform:
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/14) by @Talha-Rizwan)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/31) by @FahadKhalid210)
 - tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/20/) by @FahadKhalid210)
+- tutor-contrib-codejail ([branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/quince) by @MaferMazu)
 
 The following plugins have not been installed, yet:
 
 - [tutor-android](https://github.com/overhangio/tutor-android)
-- [tutor-contrib-codejail](https://github.com/eduNEXT/tutor-contrib-codejail)
 
 
 If you are interested in upgrading these plugins to Quince, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).

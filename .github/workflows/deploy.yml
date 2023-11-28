@@ -48,6 +48,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/edly-io/tutor-credentials.git@$VERSION#egg=tutor-credentials
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
           "
       # Backup
       - name: Backup data
@@ -92,7 +93,7 @@ jobs:
       # Configure
       - name: Enable plugins
         # missing plugins: none
-        run: $SSH "$TUTOR plugins enable mfe forum notes xqueue discovery ecommerce indigo credentials minio cairn"
+        run: $SSH "$TUTOR plugins enable mfe forum notes xqueue discovery ecommerce indigo credentials minio cairn codejail"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -117,8 +118,8 @@ jobs:
             # note: we removed the --no-cache option to avoid long deploy times
             $TUTOR images build all
           "
-      # - name: Initialize codejail
-      #   run: $SSH "$TUTOR local do init --limit=codejail"
+      - name: Initialize codejail
+        run: $SSH "$TUTOR local do init --limit=codejail"
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
       # Provision
