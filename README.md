@@ -32,6 +32,7 @@ The following plugins are enabled on the demo platform:
 - tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/25) by @jfavellar90)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/50) by @ziafazal)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/47) by @ziafazal)
+- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/10) by @Abdul-Muqadim-Arbisoft)
 
 The following plugins have not been installed, yet:
 
