@@ -47,6 +47,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/edly-io/tutor-credentials.git@$VERSION#egg=tutor-credentials
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
           "
       # Backup
       - name: Backup data
@@ -91,7 +92,7 @@ jobs:
       # Configure
       - name: Enable plugins
         # missing plugins: none
-        run: $SSH "$TUTOR plugins enable mfe forum notes xqueue discovery ecommerce indigo credentials codejail"
+        run: $SSH "$TUTOR plugins enable mfe forum notes xqueue discovery ecommerce indigo credentials codejail minio"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
