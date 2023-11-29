@@ -35,10 +35,10 @@ The following plugins are enabled on the demo platform:
 - tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/28) by @mariajgrimaldi)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/36) by @regisb)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/35) by @regisb): admin user can login with the credentials above at https://ecommerce.olive.demo.overhang.io/
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/31) by @FahadKhalid210)
 
 The following plugins have not been installed, yet:
 
-- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/20) by @regisb)
 
 If you are interested in upgrading these plugins to Olive, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
