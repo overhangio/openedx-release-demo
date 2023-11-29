@@ -101,11 +101,11 @@ jobs:
               --set ENABLE_HTTPS=true \
               --set PLATFORM_NAME='Open edx $VERSION Demo'
           "
-      # - name: Install extra xblocks/packages
-      #   run: |
-      #     $SSH "#! /bin/bash -e
-      #       $TUTOR config save --append 'OPENEDX_EXTRA_PIP_REQUIREMENTS=edx-event-routing-backends>=5.3.0,<6.0.0'
-      #     "
+      - name: Install extra xblocks/packages
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR config save --append 'OPENEDX_EXTRA_PIP_REQUIREMENTS=edx-event-routing-backends>=7.2.0,<8.0.0'
+          "
       - name: Configure xqueue grader password
         run: |
           $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
