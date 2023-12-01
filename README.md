@@ -28,7 +28,7 @@ The following plugins are enabled on the demo platform:
 
 - tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/20/) by @FahadKhalid210)
 - tutor-contrib-codejail ([branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/quince) by @MaferMazu)
-- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/14) by @Talha-Rizwan)
+- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/25) by @Talha-Rizwan)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/50) by @ziafazal)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/47) by @ziafazal)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/28) by @ghassanmas)
