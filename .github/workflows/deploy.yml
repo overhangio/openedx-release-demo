@@ -113,9 +113,9 @@ jobs:
       - name: Configure xqueue grader password
         run: |
           $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
-      - name: Configure Jupyter
+      - name: Configure Jupyter LTI Password
         run: |
-          $SSH "echo "jupyter-xblock>=15.0.0,<16.0.0" >> "$($TUTOR config printroot)/env/build/openedx/requirements/private.txt""
+          $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
       # Build
       - name: Build Docker images
         run: |
