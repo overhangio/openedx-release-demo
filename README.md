@@ -38,6 +38,7 @@ The following plugins are enabled on the demo platform:
 - tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/29) by @jfavellar90)
 - tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/10) by @Abdul-Muqadim-Arbisoft)
 - tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/25) by @jfavellar90)
+- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/4) by @mhsiddiqui)
 
 The following plugins have not been installed, yet:
 
