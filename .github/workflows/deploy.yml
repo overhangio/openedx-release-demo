@@ -50,6 +50,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/edly-io/tutor-webui.git@muqadim/quince#egg=tutor-webui
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
           "
       # Backup
       - name: Backup data
@@ -94,7 +95,7 @@ jobs:
       # Configure
       - name: Enable plugins
         # missing plugins: none
-        run: $SSH "$TUTOR plugins enable cairn codejail discovery ecommerce credentials forum indigo mfe minio notes webui xqueue"
+        run: $SSH "$TUTOR plugins enable cairn codejail discovery credentials forum indigo mfe minio notes webui xqueue jupyter"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -112,6 +113,9 @@ jobs:
       - name: Configure xqueue grader password
         run: |
           $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+      - name: Configure Jupyter LTI Password
+        run: |
+          $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
       # Build
       - name: Build Docker images
         run: |

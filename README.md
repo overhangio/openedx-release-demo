@@ -38,11 +38,13 @@ The following plugins are enabled on the demo platform:
 - tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/29) by @jfavellar90)
 - tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/10) by @Abdul-Muqadim-Arbisoft)
 - tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/25) by @jfavellar90)
+- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/4) by @mhsiddiqui)
 
 The following plugins have not been installed, yet:
 
 - [tutor-android](https://github.com/overhangio/tutor-android)
 
+For tutor-jupyter, LTI password is `jupyterhub:openedx:jupyter-lti-password`.
 
 If you are interested in upgrading these plugins to Quince, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
