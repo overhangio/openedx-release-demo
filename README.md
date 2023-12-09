@@ -26,6 +26,7 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
+- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/17) by @muhammadali286) The mobile all can be downloaded from https://mobile.quince.demo.edly.io/app.apk.
 - tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/20/) by @FahadKhalid210)
 - tutor-contrib-codejail ([branch](https://github.com/eduNEXT/tutor-contrib-codejail/tree/quince) by @MaferMazu)
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/28) by @Talha-Rizwan)
@@ -39,10 +40,6 @@ The following plugins are enabled on the demo platform:
 - tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/11) by @Abdul-Muqadim-Arbisoft)
 - tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/25) by @jfavellar90)
 - tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/4) by @mhsiddiqui). LTI passport is `jupyterhub:openedx:jupyter-lti-password`.
-
-The following plugins have not been installed, yet:
-
-- [tutor-android](https://github.com/overhangio/tutor-android)
 
 If you are interested in upgrading these plugins to Quince, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
