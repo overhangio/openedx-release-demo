@@ -34,7 +34,7 @@ The following plugins are enabled on the demo platform:
 - tutor-ecommerce (TBD)
 - tutor-forum (TBD)
 - tutor-indigo (TBD)
-- tutor-mfe (TBD)
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/207) by @hinakhadim)
 - tutor-minio (TBD)
 - tutor-notes (TBD)
 - tutor-webui (TBD)
