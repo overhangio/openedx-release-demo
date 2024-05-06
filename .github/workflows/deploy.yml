@@ -12,9 +12,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SSH: ssh -o StrictHostKeyChecking=no -i ~/.ssh/demo.key tutor@quince.demo.edly.io
-      VERSION: quince
-      LMS_HOST: quince.demo.edly.io
+      SSH: ssh -o StrictHostKeyChecking=no -i ~/.ssh/demo.key tutor@redwood.demo.edly.io
+      VERSION: redwood
+      LMS_HOST: redwood.demo.edly.io
       TUTOR: ~/.local/bin/tutor
     steps:
       - name: Configure SSH
@@ -38,20 +38,8 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
           "
       # Backup
       - name: Backup data
@@ -95,8 +83,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: none
-        run: $SSH "$TUTOR plugins enable android cairn codejail discovery ecommerce credentials forum indigo mfe minio notes webui xqueue jupyter"
+        # missing plugins: android cairn codejail discovery ecommerce credentials forum minio notes webui xqueue jupyter
+        run: $SSH "$TUTOR plugins enable indigo mfe"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -111,21 +99,23 @@ jobs:
           $SSH "#! /bin/bash -e
             $TUTOR config save --append 'OPENEDX_EXTRA_PIP_REQUIREMENTS=edx-event-routing-backends>=7.2.0,<8.0.0'
           "
-      - name: Configure xqueue grader password
-        run: |
-          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
-      - name: Configure Jupyter LTI Password
-        run: |
-          $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
+      # - name: Configure xqueue grader password
+      #   run: |
+      #     $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+      # - name: Configure Jupyter LTI Password
+      #   run: |
+      #     $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
       # Build
       - name: Build Docker images
         run: |
           $SSH "#! /bin/bash -e
-            # note: we removed the --no-cache option to avoid long deploy times
-            $TUTOR images build all
+            # build openedx image and skip cache for "code" layer
+            $TUTOR images build --docker-arg=--no-cache-filter=code openedx
+            # build other images
+            $TUTOR images build mfe indigo
           "
-      - name: Initialize codejail
-        run: $SSH "$TUTOR local do init --limit=codejail"
+      # - name: Initialize codejail
+      #   run: $SSH "$TUTOR local do init --limit=codejail"
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
       # Provision
