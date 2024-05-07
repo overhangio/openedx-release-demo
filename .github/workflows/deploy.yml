@@ -1,11 +1,11 @@
 name: Deploy
 
 on:
-  # schedule:
-  # Run at 7am every day
-  # - cron:  '0 7 * * *'
-  # Run at 7am every Monday
-  # - cron:  '0 7 * * 1'
+  schedule:
+    # Run at 7am every day
+    # - cron:  '0 7 * * *'
+    # Run at 7am every Monday
+    - cron: "0 7 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -30,16 +30,29 @@ jobs:
         # https://github.com/pypa/pip/issues/7953
         run: |
           $SSH "#! /bin/bash -e
-            pip install --user --upgrade pip==23.1.2 setuptools
+          pip install --user --upgrade pip setuptools
           "
       # Server system dependencies, to be run separately
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
+        # Pending:
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
           "
       # Backup
       - name: Backup data
@@ -83,8 +96,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: android cairn codejail discovery ecommerce credentials forum minio notes webui xqueue jupyter
-        run: $SSH "$TUTOR plugins enable indigo mfe"
+        # missing plugins: android codejail discovery ecommerce credentials forum notes webui xqueue jupyter
+        run: $SSH "$TUTOR plugins enable cairn indigo mfe minio"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -112,7 +125,7 @@ jobs:
             # build openedx image and skip cache for "code" layer
             $TUTOR images build --docker-arg=--no-cache-filter=code openedx
             # build other images
-            $TUTOR images build mfe indigo
+            $TUTOR images build cairn indigo mfe minio
           "
       # - name: Initialize codejail
       #   run: $SSH "$TUTOR local do init --limit=codejail"

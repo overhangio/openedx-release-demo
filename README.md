@@ -27,15 +27,15 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 The following plugins are enabled on the demo platform:
 
 - tutor-android (TBD)
-- tutor-cairn (TBD)
+- tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/39) by @FahadKhalid210)
 - tutor-contrib-codejail (TBD)
 - tutor-credentials (TBD)
 - tutor-discovery (TBD)
 - tutor-ecommerce (TBD)
 - tutor-forum (TBD)
-- tutor-indigo (TBD)
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/79) by @hinakhadim)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/207) by @hinakhadim)
-- tutor-minio (TBD)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/40) by @FahadKhalid210)
 - tutor-notes (TBD)
 - tutor-webui (TBD)
 - tutor-xqueue (TBD)
