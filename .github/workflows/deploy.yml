@@ -12,7 +12,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SSH: ssh -o StrictHostKeyChecking=no -i ~/.ssh/demo.key tutor@redwood.demo.edly.io
+      SSH: ssh -o StrictHostKeyChecking=no -i ~/.ssh/demo.key ubuntu@redwood.demo.edly.io
       VERSION: redwood
       LMS_HOST: redwood.demo.edly.io
       TUTOR: ~/.local/bin/tutor
@@ -39,8 +39,6 @@ jobs:
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
@@ -49,9 +47,11 @@ jobs:
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
           "
       # Backup
@@ -96,8 +96,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: android codejail discovery ecommerce credentials forum notes webui xqueue jupyter
-        run: $SSH "$TUTOR plugins enable cairn indigo mfe minio"
+        # missing plugins: android codejail credentials forum notes webui xqueue jupyter
+        run: $SSH "$TUTOR plugins enable cairn discovery ecommerce indigo mfe minio"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -125,7 +125,7 @@ jobs:
             # build openedx image and skip cache for "code" layer
             $TUTOR images build --docker-arg=--no-cache-filter=code openedx
             # build other images
-            $TUTOR images build cairn indigo mfe minio
+            $TUTOR images build cairn discovery ecommerce mfe minio
           "
       # - name: Initialize codejail
       #   run: $SSH "$TUTOR local do init --limit=codejail"
@@ -154,6 +154,9 @@ jobs:
       #     "
       - name: "Provision: Import demo course"
         run: $SSH "$TUTOR local do importdemocourse"
+
+      - name: "Prune Docker system"
+        run: $SSH "docker system prune -a -f --volumes"
 
       # - name: "Provision: Import test course & libraries"
       #   run: |
