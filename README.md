@@ -27,18 +27,18 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 The following plugins are enabled on the demo platform:
 
 - tutor-android (TBD)
-- tutor-cairn (TBD)
+- tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/39) by @FahadKhalid210)
 - tutor-contrib-codejail (TBD)
 - tutor-credentials (TBD)
-- tutor-discovery (TBD)
-- tutor-ecommerce (TBD)
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/74) by @Faraz32123)
+- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/81) by @Faraz32123)
 - tutor-forum (TBD)
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/79) by @hinakhadim)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/207) by @hinakhadim)
-- tutor-minio (TBD)
-- tutor-notes (TBD)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/40) by @FahadKhalid210)
+- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/37) by @jfavellar90)
 - tutor-webui (TBD)
-- tutor-xqueue (TBD)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/31) by @jfavellar90)
 - tutor-jupyter (TBD)
 
 If you are interested in upgrading these plugins to Redwood, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
