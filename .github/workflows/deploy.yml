@@ -37,22 +37,23 @@ jobs:
       - name: Install dependencies, tutor and plugins (from source)
         # Pending:
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
+        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/openedx/tutor-contrib-aspects.git@master#egg=tutor-contrib-aspects
           "
       # Backup
       - name: Backup data
@@ -96,8 +97,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: android codejail credentials forum webui jupyter
-        run: $SSH "$TUTOR plugins enable cairn discovery ecommerce indigo mfe minio notes xqueue"
+        # missing plugins: android cairn webui jupyter
+        run: $SSH "$TUTOR plugins enable aspects credentials codejail discovery ecommerce forum indigo mfe minio notes xqueue"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -105,7 +106,7 @@ jobs:
               --set LMS_HOST=$LMS_HOST \
               --set CMS_HOST=studio.$LMS_HOST \
               --set ENABLE_HTTPS=true \
-              --set PLATFORM_NAME='Open edx $VERSION Demo'
+              --set PLATFORM_NAME='Open edX Redwood Demo'
           "
       - name: Install extra xblocks/packages
         run: |
@@ -124,8 +125,8 @@ jobs:
           $SSH "#! /bin/bash -e
             $TUTOR images build all
           "
-      # - name: Initialize codejail
-      #   run: $SSH "$TUTOR local do init --limit=codejail"
+      - name: Initialize codejail
+        run: $SSH "$TUTOR local do init --limit=codejail"
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
       # Provision
