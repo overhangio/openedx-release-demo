@@ -52,7 +52,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@redwoood#egg=tutor-contrib-codejail
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/openedx/tutor-contrib-aspects.git@master#egg=tutor-contrib-aspects
           "
       # Backup
