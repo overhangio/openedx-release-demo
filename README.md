@@ -31,7 +31,7 @@ The following plugins are enabled on the demo platform:
   - tutor-contrib-aspects ([master branch](https://github.com/openedx/tutor-contrib-aspects/tree/master))
   - aspects has been enabled in place of cairn for testing of certain Product features.
 - tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/53) by @MoisesGSalas)
-- tutor-credentials (TBD)
+- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/42) by @Faraz32123)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/74) by @Faraz32123)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/81) by @Faraz32123)
 - tutor-forum (TBD)
