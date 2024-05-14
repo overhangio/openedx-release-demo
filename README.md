@@ -34,7 +34,7 @@ The following plugins are enabled on the demo platform:
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/42) by @Faraz32123)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/74) by @Faraz32123)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/81) by @Faraz32123)
-- tutor-forum (TBD)
+- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/36) by @DawoudSheraz)
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/79) by @hinakhadim)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/207) by @hinakhadim)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/40) by @FahadKhalid210)
