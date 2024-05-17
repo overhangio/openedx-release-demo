@@ -30,8 +30,7 @@ The following plugins are enabled on the demo platform:
 - ~~tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/39) by @FahadKhalid210)~~
   - tutor-contrib-aspects ([master branch](https://github.com/openedx/tutor-contrib-aspects/tree/master))
   - aspects has been enabled in place of cairn for testing of certain Product features.
-- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/53) by @MoisesGSalas)
-  - This is temporarily disabled due to some build issues
+- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/54) by @MoisesGSalas)
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/42) by @Faraz32123)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/74) by @Faraz32123)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/81) by @Faraz32123)
