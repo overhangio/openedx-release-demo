@@ -12,7 +12,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SSH: ssh -o StrictHostKeyChecking=no -i ~/.ssh/demo.key ubuntu@redwood.demo.edly.io
+      SSH: ssh -o StrictHostKeyChecking=no -o TCPKeepAlive=yes -o ServerAliveInterval=150 -i ~/.ssh/demo.key ubuntu@redwood.demo.edly.io
       VERSION: redwood
       LMS_HOST: redwood.demo.edly.io
       TUTOR: ~/.local/bin/tutor
