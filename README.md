@@ -39,9 +39,9 @@ The following plugins are enabled on the demo platform:
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/207) by @hinakhadim)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/40) by @FahadKhalid210)
 - tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/37) by @jfavellar90)
-- tutor-webui (TBD)
+- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/17) by @Abdul-Muqadim-Arbisoft)
 - tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/31) by @jfavellar90)
-- tutor-jupyter (TBD)
+- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/8) by @Abdul-Muqadim-Arbisoft)
 
 If you are interested in upgrading these plugins to Redwood, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
