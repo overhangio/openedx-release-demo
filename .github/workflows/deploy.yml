@@ -53,7 +53,7 @@ jobs:
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/openedx/tutor-contrib-aspects.git@master#egg=tutor-contrib-aspects
-            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@VERSION#egg=tutor-contrib-codejail
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
           "
       # Backup
       - name: Backup data
