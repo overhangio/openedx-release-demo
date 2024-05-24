@@ -20,7 +20,7 @@ You may log in with the following credentials:
   - email: admin@overhang.io
   - password: admin
 
-The platform is reset weekly, every Monday at 7 am UTC.
+The platform is reset weekly, every Monday at 2 am UTC.
 
 The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/master/.github/workflows/deploy.yml) is included in this repository. If you are working on testing the latest release and you would like to modify this script, please open a pull request.
 
