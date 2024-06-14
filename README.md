@@ -26,8 +26,9 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- tutor-android (TBD)
-- ~~tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/39) by @FahadKhalid210)~~
+- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/24) by @DawoudSheraz)
+  - The mobile apk can be downloaded from https://mobile.redwood.demo.edly.io/app.apk.
+- ~~tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/40) by @FahadKhalid210)~~
   - tutor-contrib-aspects ([master branch](https://github.com/openedx/tutor-contrib-aspects/tree/master))
   - aspects has been enabled in place of cairn for testing of certain Product features.
 - tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/54) by @MoisesGSalas)
@@ -42,6 +43,7 @@ The following plugins are enabled on the demo platform:
 - tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/17) by @Abdul-Muqadim-Arbisoft)
 - tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/31) by @jfavellar90)
 - tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/8) by @Abdul-Muqadim-Arbisoft)
+  - LTI passport is `jupyterhub:openedx:jupyter-lti-password`.
 
 If you are interested in upgrading these plugins to Redwood, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
