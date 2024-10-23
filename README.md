@@ -1,25 +1,23 @@
 # Open edX release demo platform CD
 
-⚠ This repo is read-only until the next major Open edX release. See you in Sumac! (Oct. 2024)
-
-This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of May 9, 2024, it is used to deploy and configure a test instance of the Redwood release.
+This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of October 23, 2024, it is used to deploy and configure a test instance of the Sumac release.
 
 ⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss.openedx.org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
 
 URLs:
 
-- LMS: https://redwood.demo.edly.io
-- Studio: https://studio.redwood.demo.edly.io
+- LMS: https://sumac.demo.edly.io
+- Studio: https://studio.sumac.demo.edly.io
 
 You may log in with the following credentials:
 
 - Student user:
   - username: student
-  - email: student@overhang.io
+  - email: student@edly.io
   - password: student
 - Administrator user:
   - username: admin
-  - email: admin@overhang.io
+  - email: admin@edly.io
   - password: admin
 
 The platform is reset weekly, every Monday at 2 am UTC.
@@ -28,26 +26,26 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/24) by @DawoudSheraz)
-  - The mobile apk can be downloaded from https://mobile.redwood.demo.edly.io/app.apk.
-- ~~tutor-cairn ([PR](https://github.com/overhangio/tutor-cairn/pull/40) by @FahadKhalid210)~~
-  - tutor-contrib-aspects ([master branch](https://github.com/openedx/tutor-contrib-aspects/tree/master))
+- tutor-android (TBA)
+  - ~~The mobile apk can be downloaded from https://mobile.sumac.demo.edly.io/app.apk.~~
+- ~~tutor-cairn (TBA)~~
+  - tutor-contrib-aspects ([master branch](https://github.com/openedx/tutor-contrib-aspects/tree/master)) -- **To be enabled**
   - aspects has been enabled in place of cairn for testing of certain Product features.
-- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/54) by @MoisesGSalas)
-- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/42) by @Faraz32123)
-- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/74) by @Faraz32123)
-- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/81) by @Faraz32123)
-- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/36) by @DawoudSheraz)
-- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/79) by @hinakhadim)
-- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/207) by @hinakhadim)
-- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/40) by @FahadKhalid210)
-- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/37) by @jfavellar90)
-- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/17) by @Abdul-Muqadim-Arbisoft)
-- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/31) by @jfavellar90)
-- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/8) by @Abdul-Muqadim-Arbisoft)
+- tutor-contrib-codejail (TBA)
+- tutor-credentials (TBA)
+- tutor-discovery (TBA)
+- tutor-ecommerce (TBA)
+- tutor-forum (TBA)
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/101) by @hinakhadim)
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/227) by @hinakhadim and @DawoudSheraz)
+- tutor-minio (TBA)
+- tutor-notes (TBA)
+- tutor-webui (TBA)
+- tutor-xqueue (TBA)
+- tutor-jupyter (TBA)
   - LTI passport is `jupyterhub:openedx:jupyter-lti-password`.
 
-If you are interested in upgrading these plugins to Redwood, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
+If you are interested in upgrading these plugins to Sumac, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
 ## Testing
 
