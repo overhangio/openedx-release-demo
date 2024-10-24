@@ -35,7 +35,7 @@ The following plugins are enabled on the demo platform:
 - tutor-credentials (TBA)
 - tutor-discovery (TBA)
 - tutor-ecommerce (TBA)
-- tutor-forum (TBA)
+- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/49) by @ghassanmas)
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/101) by @hinakhadim)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/227) by @hinakhadim and @DawoudSheraz)
 - tutor-minio (TBA)
