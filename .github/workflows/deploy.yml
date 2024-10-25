@@ -36,24 +36,23 @@ jobs:
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
         # Pending:
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-cairn.git@$VERSION#egg=tutor-cairn
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
         # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/openedx/tutor-contrib-aspects.git@master#egg=tutor-contrib-aspects
-        # pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
         run: |
           $SSH "#! /bin/bash -e
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-ecommerce.git@$VERSION#egg=tutor-ecommerce
             pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/openedx/tutor-contrib-aspects.git@v1.2.0#egg=tutor-contrib-aspects
+            pip install --user --upgrade --src=~/apps/openedx/src --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
           "
       # Backup
       - name: Backup data
@@ -97,8 +96,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: cairn android aspects credentials discovery ecommerce forum jupyter minio notes webui xqueue codejail
-        run: $SSH "$TUTOR plugins enable indigo mfe forum"
+        # missing plugins: android jupyter webui  
+        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery ecommerce forum minio notes xqueue "
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -108,15 +107,10 @@ jobs:
               --set ENABLE_HTTPS=true \
               --set PLATFORM_NAME='Open edX Sumac Demo'
           "
-      - name: Install extra xblocks/packages
+
+      - name: Configure xqueue grader password
         run: |
-          $SSH "#! /bin/bash -e
-            $TUTOR config save --append 'OPENEDX_EXTRA_PIP_REQUIREMENTS=edx-event-routing-backends>=7.2.0,<8.0.0'
-          "
-      # TODO: uncomment when enabling tutor-xqueue
-      # - name: Configure xqueue grader password
-      #   run: |
-      #     $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
       # TODO: uncomment when enabling tutor-jupyter
       # - name: Configure Jupyter LTI Password
       #   run: |
@@ -128,9 +122,13 @@ jobs:
             $TUTOR images build all
           "
 
-      # TODO: uncomment when enabling tutor-contrib-codejail
-      # - name: Initialize codejail
-      #   run: $SSH "$TUTOR local do init --limit=codejail"
+      - name: Initialize codejail
+        run: $SSH "$TUTOR local do init --limit=codejail"
+      
+      - name: Configure Aspects
+        run: |
+          $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true"
+
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
       # Provision

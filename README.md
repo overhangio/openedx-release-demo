@@ -29,19 +29,19 @@ The following plugins are enabled on the demo platform:
 - tutor-android (TBA)
   - ~~The mobile apk can be downloaded from https://mobile.sumac.demo.edly.io/app.apk.~~
 - ~~tutor-cairn (TBA)~~
-  - tutor-contrib-aspects ([master branch](https://github.com/openedx/tutor-contrib-aspects/tree/master)) -- **To be enabled**
+  - tutor-contrib-aspects ([v1.2.0](https://github.com/openedx/tutor-contrib-aspects/tree/v1.2.0))
   - aspects has been enabled in place of cairn for testing of certain Product features.
-- tutor-contrib-codejail (TBA)
-- tutor-credentials (TBA)
-- tutor-discovery (TBA)
-- tutor-ecommerce (TBA)
+- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/59) by @MoisesGSalas)
+- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/49) by @Faraz32123)
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/87) by @Faraz32123)
+- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/84) by @Faraz32123)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/49) by @ghassanmas)
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/101) by @hinakhadim)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/227) by @hinakhadim and @DawoudSheraz)
-- tutor-minio (TBA)
-- tutor-notes (TBA)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/51) by @Faraz32123)
+- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/41) by @jfavellar90)
 - tutor-webui (TBA)
-- tutor-xqueue (TBA)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/34) by @jfavellar90)
 - tutor-jupyter (TBA)
   - LTI passport is `jupyterhub:openedx:jupyter-lti-password`.
 
