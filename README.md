@@ -26,8 +26,8 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- tutor-android (TBA)
-  - ~~The mobile apk can be downloaded from https://mobile.sumac.demo.edly.io/app.apk.~~
+- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/28) by @muhammadali286 & @Abdul-Muqadim-Arbisoft)
+  - The mobile apk can be downloaded from https://mobile.sumac.demo.edly.io/app.apk.
 - ~~tutor-cairn (TBA)~~
   - tutor-contrib-aspects ([v1.2.0](https://github.com/openedx/tutor-contrib-aspects/tree/v1.2.0))
   - aspects has been enabled in place of cairn for testing of certain Product features.
@@ -40,9 +40,9 @@ The following plugins are enabled on the demo platform:
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/227) by @hinakhadim and @DawoudSheraz)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/51) by @Faraz32123)
 - tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/41) by @jfavellar90)
-- tutor-webui (TBA)
+- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/19) by @Abdul-Muqadim-Arbisoft & @hinakhadim)
 - tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/34) by @jfavellar90)
-- tutor-jupyter (TBA)
+- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/15) by @Abdul-Muqadim-Arbisoft)
   - LTI passport is `jupyterhub:openedx:jupyter-lti-password`.
 
 If you are interested in upgrading these plugins to Sumac, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
