@@ -96,8 +96,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins:
-        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery ecommerce forum minio notes xqueue android jupyter webui"
+        # missing plugins:  forum (forum is temporarily disabled until forum_v2 related PRs are merged)
+        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery ecommerce minio notes xqueue android jupyter webui"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
