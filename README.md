@@ -36,6 +36,7 @@ The following plugins are enabled on the demo platform:
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/87) by @Faraz32123)
 - tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/84) by @Faraz32123)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/49) by @ghassanmas)
+  - This is disabled temporarily until forumv2 PRs are merged upstream.
 - tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/101) by @hinakhadim)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/227) by @hinakhadim and @DawoudSheraz)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/51) by @Faraz32123)
