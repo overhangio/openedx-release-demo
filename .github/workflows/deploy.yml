@@ -123,7 +123,7 @@ jobs:
 
       - name: Initialize codejail
         run: $SSH "$TUTOR local do init --limit=codejail"
-      
+
       - name: Configure Aspects
         run: |
           $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true"
@@ -153,9 +153,6 @@ jobs:
       #     "
       - name: "Provision: Import demo course"
         run: $SSH "$TUTOR local do importdemocourse"
-
-      - name: "Prune Docker system"
-        run: $SSH "docker system prune -a -f --volumes"
 
       # - name: "Provision: Import test course & libraries"
       #   run: |
