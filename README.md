@@ -60,6 +60,70 @@ Then run::
 
     act workflow_dispatch
 
+## Server provisioning
+
+We need to be careful not to exceed the disk space and the server memory to avoid filled disks, excessive build times and crashes.
+
+### Docker builder
+
+We must configure the docker builder not to use more than 4 CPU and always leave some free space on disk. Edit `buildkit.toml` and add the following content:
+
+    # https://docs.docker.com/build/buildkit/toml-configuration/
+    # Apply configuration by stopping and removing build container:
+    #
+    #    docker stop buildx_buildkit_max4cpu0
+    #    docker rm buildx_buildkit_max4cpu0
+    #    docker buildx create --use --name=max4cpu --node=max4cpu0 --config=./buildkitd.toml
+    #    docker buildx inspect --bootstrap
+    #    docker exec buildx_buildkit_max4cpu0 cat /etc/buildkit/buildkitd.toml
+
+    # Enable debug mode, such that we can log gc events and detect them with:
+    #
+    #    docker logs -f buildx_buildkit_max4cpu0 2>&1 | grep garbage
+    debug = true
+    [worker.oci]
+      max-parallelism = 4
+      gc = true
+      # Keep some space for cache
+      reservedSpace = "25GB"
+      # Always leave some free space
+      minFreeSpace = "10GB"
+
+Then create the builder with:
+
+    docker buildx create --use --name=max4cpu --config=./buildkitd.toml
+
+In case we are updating an existing builder, we need to stop and delete the container to apply the changes:
+
+    docker buildx create --use --name=max4cpu --node=max4cpu0 --config=./buildkitd.toml
+    docker stop buildx_buildkit_max4cpu0
+    docker container rm buildx_buildkit_max4cpu0
+
+### Image cache
+
+First, we need to limit the amount of space used by Docker images. This can be achieved with the help of [docuum](https://github.com/stepchowfun/docuum):
+
+    mkdir -p ~/apps/docuum
+    cd ~/apps/docuum
+    vim docker-compose.yml
+
+Add the following services:
+
+    services:
+        # auto-clean least-recently used docker images
+        docuum:
+            image: stephanmisc/docuum:latest
+            init: true
+            volumes:
+              - /var/run/docker.sock:/var/run/docker.sock
+              - ./data/docuum:/root/.local/share/docuum
+            command: "--threshold=50GB"
+            restart: unless-stopped
+
+And start it with:
+
+    docker compose up -d
+
 ## License
 
 This work is licensed under the terms of the [GNU Affero General Public License (AGPL)](https://github.com/overhangio/tutor/blob/master/LICENSE.txt).
