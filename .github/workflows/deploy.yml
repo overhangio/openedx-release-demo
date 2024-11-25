@@ -14,7 +14,7 @@ jobs:
     env:
       SSH: ssh -o StrictHostKeyChecking=no -o TCPKeepAlive=yes -o ServerAliveInterval=150 -i ~/.ssh/demo.key ubuntu@sumac.demo.edly.io
       VERSION: sumac
-      LMS_HOST: sumac.demo.edly.io$
+      LMS_HOST: sumac.demo.edly.io
       VENV: ~/venv
       PIP: ~/venv/bin/pip
       TUTOR: ~/venv/bin/tutor
