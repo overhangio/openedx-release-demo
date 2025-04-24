@@ -34,7 +34,7 @@ The following plugins are enabled on the demo platform:
 - tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/68) by @MoisesGSalas)
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/56) by @mlabeeb03)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/102) by @mlabeeb03)
-- tutor-forum (TBA)
+- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/68) by @DawoudSheraz)
 - tutor-indigo (Disabled)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/248 by @DawoudSheraz)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/60) by @Danyal-Faheem)

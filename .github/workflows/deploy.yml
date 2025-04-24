@@ -47,13 +47,13 @@ jobs:
       - name: Install dependencies, tutor and plugins (from source)
         # Pending:
           # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
-          # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
         run: |
           $SSH "#! /bin/bash -e
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
@@ -105,8 +105,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: indigo and forums.
-        run: $SSH "$TUTOR plugins enable mfe aspects codejail credentials discovery minio notes xqueue android jupyter webui"
+        # missing plugins: indigo.
+        run: $SSH "$TUTOR plugins enable mfe aspects codejail credentials discovery minio notes xqueue android jupyter forum webui"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
