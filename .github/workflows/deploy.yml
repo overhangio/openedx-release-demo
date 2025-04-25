@@ -104,7 +104,7 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        run: $SSH "$TUTOR plugins indigo enable mfe aspects codejail credentials discovery minio notes xqueue android jupyter forum webui"
+        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery minio notes xqueue android jupyter forum webui"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
