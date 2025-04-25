@@ -35,7 +35,7 @@ The following plugins are enabled on the demo platform:
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/56) by @mlabeeb03)
 - tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/102) by @mlabeeb03)
 - tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/68) by @DawoudSheraz)
-- tutor-indigo (Disabled)
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/138) by @HammadYousaf01)
 - tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/248 by @DawoudSheraz)
 - tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/60) by @Danyal-Faheem)
 - tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/49) by @jfavellar90)
@@ -90,7 +90,7 @@ We must configure the docker builder not to use more than 4 CPU and always leave
 
 Then create the builder with:
 
-    docker buildx create --use --name=max4cpu --config=./buildkitd.toml
+    docker buildx create --use --name=max4cpu --config=./buildkit.toml
 
 In case we are updating an existing builder, we need to stop and delete the container to apply the changes:
 

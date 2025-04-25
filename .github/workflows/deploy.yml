@@ -45,13 +45,12 @@ jobs:
       # Server system dependencies, to be run separately
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
-        # Pending:
-          # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
         run: |
           $SSH "#! /bin/bash -e
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
@@ -105,8 +104,7 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-        # missing plugins: indigo.
-        run: $SSH "$TUTOR plugins enable mfe aspects codejail credentials discovery minio notes xqueue android jupyter forum webui"
+        run: $SSH "$TUTOR plugins indigo enable mfe aspects codejail credentials discovery minio notes xqueue android jupyter forum webui"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -140,12 +138,6 @@ jobs:
 
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
-      # Provision
-      # - name: "Provision: Set theme"
-      #   run: |
-      #     $SSH "#! /bin/bash -e
-      #       $TUTOR local do settheme indigo
-      #     "
       - name: "Provision: Create users"
         run: |
           $SSH "#! /bin/bash -e
