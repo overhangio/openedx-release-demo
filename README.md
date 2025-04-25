@@ -1,13 +1,13 @@
 # Open edX release demo platform CD
 
-This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of October 23, 2024, it is used to deploy and configure a test instance of the Sumac release.
+This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of April 24, 2025, it is used to deploy and configure a test instance of the Teak release.
 
 ⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss.openedx.org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
 
 URLs:
 
-- LMS: https://sumac.demo.edly.io
-- Studio: https://studio.sumac.demo.edly.io
+- LMS: https://teak.demo.edly.io
+- Studio: https://studio.teak.demo.edly.io
 
 You may log in with the following credentials:
 
@@ -26,26 +26,25 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/28) by @muhammadali286 & @Abdul-Muqadim-Arbisoft)
-  - The mobile apk can be downloaded from https://mobile.sumac.demo.edly.io/app.apk.
+- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/40) by @Abdul-Muqadim-Arbisoft)
+  - The mobile apk can be downloaded from https://mobile.teak.demo.edly.io/app.apk.
 - ~~tutor-cairn (TBA)~~
-  - tutor-contrib-aspects ([v1.3.0](https://github.com/openedx/tutor-contrib-aspects/tree/v1.3.0))
+  - tutor-contrib-aspects ([v2.0.0](https://github.com/openedx/tutor-contrib-aspects/tree/v2.0.0))
   - aspects has been enabled in place of cairn for testing of certain Product features.
-- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/59) by @MoisesGSalas)
-- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/49) by @Faraz32123)
-- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/87) by @Faraz32123)
-- tutor-ecommerce ([PR](https://github.com/overhangio/tutor-ecommerce/pull/84) by @Faraz32123)
-- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/49) by @ghassanmas)
-- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/101) by @hinakhadim)
-- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/227) by @hinakhadim and @DawoudSheraz)
-- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/51) by @Faraz32123)
-- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/41) by @jfavellar90)
-- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/19) by @Abdul-Muqadim-Arbisoft & @hinakhadim)
-- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/34) by @jfavellar90)
-- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/15) by @Abdul-Muqadim-Arbisoft)
+- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/68) by @MoisesGSalas)
+- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/56) by @mlabeeb03)
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/102) by @mlabeeb03)
+- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/68) by @DawoudSheraz)
+- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/138) by @HammadYousaf01)
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/248 by @DawoudSheraz)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/60) by @Danyal-Faheem)
+- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/49) by @jfavellar90)
+- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/26) by @Abdul-Muqadim-Arbisoft)
+- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/41) by @jfavellar90)
+- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/24) by @Abdul-Muqadim-Arbisoft)
   - LTI passport is `jupyterhub:openedx:jupyter-lti-password`.
 
-If you are interested in upgrading these plugins to Sumac, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
+If you are interested in upgrading these plugins to Teak, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
 ## Testing
 
@@ -91,7 +90,7 @@ We must configure the docker builder not to use more than 4 CPU and always leave
 
 Then create the builder with:
 
-    docker buildx create --use --name=max4cpu --config=./buildkitd.toml
+    docker buildx create --use --name=max4cpu --config=./buildkit.toml
 
 In case we are updating an existing builder, we need to stop and delete the container to apply the changes:
 
