@@ -62,6 +62,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
             $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@v2.3.0#egg=tutor-contrib-aspects
             $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
+            $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
           "
       # Backup
       - name: Backup data
@@ -106,7 +107,7 @@ jobs:
       # Configure
       - name: Enable plugins
       # pending plugins: minio
-        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery notes xqueue android jupyter forum webui"
+        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery notes xqueue android jupyter forum webui scout-apm"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -137,9 +138,16 @@ jobs:
       - name: Configure Aspects
         run: |
           $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true --set ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS=true"
+      
+      - name: Configure Scout APM
+        run: |
+          $SSH "$TUTOR config save --set SCOUT_NAME="Edly Teak Sandbox" --set SCOUT_KEY=$SCOUT_APM_KEY
+        env:
+          SCOUT_APM_KEY: ${{ secrets.SCOUT_APM_KEY }}
 
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
+
       - name: "Provision: Create users"
         run: |
           $SSH "#! /bin/bash -e
