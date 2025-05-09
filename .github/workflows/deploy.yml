@@ -46,7 +46,6 @@ jobs:
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
       # pending:
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
         run: |
           $SSH "#! /bin/bash -e
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
@@ -55,6 +54,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
@@ -106,8 +106,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-      # pending plugins: minio
-        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery notes xqueue android jupyter forum webui scout-apm"
+      # pending plugins: 
+        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery minio notes xqueue android jupyter forum webui scout-apm"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -156,18 +156,3 @@ jobs:
           "
       - name: "Provision: Import demo course"
         run: $SSH "$TUTOR local do importdemocourse"
-
-      # - name: "Provision: Import test course & libraries"
-      #   run: |
-      #     $SSH "#! /bin/bash -e
-      #       cd ~/apps/openedx
-      #       rm -rf openedx-test-course
-      #       git clone https://github.com/openedx/openedx-test-course
-      #       cd openedx-test-course
-
-      #       $TUTOR local run -v $(pwd):/openedx/data/openedx-test-course cms ./manage.py cms import_content_library /openedx/data/openedx-test-course/dist/test-problem-bank.tar.gz admin
-
-      #       $TUTOR local run -v $(pwd):/openedx/data/openedx-test-course cms ./manage.py cms import /openedx/data openedx-test-course/test-course/course
-
-      #       $TUTOR local run cms ./manage.py cms reindex_course --all --setup
-      #     "
