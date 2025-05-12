@@ -141,7 +141,7 @@ jobs:
       
       - name: Configure Scout APM
         run: |
-          $SSH "$TUTOR config save --set SCOUT_NAME="Edly Teak Sandbox" --set SCOUT_KEY=$SCOUT_APM_KEY
+          $SSH "$TUTOR config save --set SCOUT_NAME='Edly Teak Sandbox' --set SCOUT_KEY=$SCOUT_APM_KEY"
         env:
           SCOUT_APM_KEY: ${{ secrets.SCOUT_APM_KEY }}
 
