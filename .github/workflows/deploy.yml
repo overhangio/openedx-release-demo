@@ -125,16 +125,7 @@ jobs:
       - name: Configure Jupyter LTI Password
         run: |
           $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
-      # Build
-      - name: Build Docker images
-        run: |
-          $SSH "#! /bin/bash -e
-            $TUTOR images build all
-          "
-
-      - name: Initialize codejail
-        run: $SSH "$TUTOR local do init --limit=codejail"
-
+      
       - name: Configure Aspects
         run: |
           $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true --set ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS=true"
@@ -144,6 +135,15 @@ jobs:
           $SSH "$TUTOR config save --set SCOUT_NAME='Edly Teak Sandbox' --set SCOUT_KEY=$SCOUT_APM_KEY"
         env:
           SCOUT_APM_KEY: ${{ secrets.SCOUT_APM_KEY }}
+
+      - name: Build Docker images
+        run: |
+          $SSH "#! /bin/bash -e
+            $TUTOR images build all
+          "
+
+      - name: Initialize codejail
+        run: $SSH "$TUTOR local do init --limit=codejail"
 
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
