@@ -60,7 +60,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
-            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@v2.3.0#egg=tutor-contrib-aspects
+            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@v2.3.1#egg=tutor-contrib-aspects
             $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
             $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
           "

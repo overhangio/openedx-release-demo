@@ -29,7 +29,7 @@ The following plugins are enabled on the demo platform:
 - tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/40) by @Abdul-Muqadim-Arbisoft)
   - The mobile apk can be downloaded from https://mobile.teak.demo.edly.io/app.apk.
 - ~~tutor-cairn (TBA)~~
-  - tutor-contrib-aspects ([v2.3.0](https://github.com/openedx/tutor-contrib-aspects/tree/v2.3.0))
+  - tutor-contrib-aspects ([v2.3.1](https://github.com/openedx/tutor-contrib-aspects/tree/v2.3.1))
   - aspects has been enabled in place of cairn for testing of certain Product features.
 - tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/68) by @MoisesGSalas)
 - tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/56) by @mlabeeb03)
