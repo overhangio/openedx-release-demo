@@ -1,5 +1,7 @@
 # Open edX release demo platform CD
 
+⚠ This repo is read-only until the next major Open edX release. See you in Ulmo! (Oct. 2025)
+
 This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of April 24, 2025, it is used to deploy and configure a test instance of the Teak release.
 
 ⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss.openedx.org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
