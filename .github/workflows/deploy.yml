@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SSH: ssh -o StrictHostKeyChecking=no -o TCPKeepAlive=yes -o ServerAliveInterval=150 -i ~/.ssh/demo.key tutor@ulmo.demo.edly.io
-      VERSION: ulmo
+      VERSION: main
       LMS_HOST: ulmo.demo.edly.io
       VENV: ~/venv
       PIP: ~/venv/bin/pip
