@@ -46,9 +46,7 @@ jobs:
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
       # pending:
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
@@ -63,6 +61,8 @@ jobs:
           $SSH "#! /bin/bash -e
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
           "
       # Backup
       - name: Backup data
@@ -115,7 +115,7 @@ jobs:
               --set LMS_HOST=$LMS_HOST \
               --set CMS_HOST=studio.$LMS_HOST \
               --set ENABLE_HTTPS=true \
-              --set PLATFORM_NAME='Open edX Teak Demo'
+              --set PLATFORM_NAME='Open edX Ulmo Demo'
           "
 
       # - name: Configure xqueue grader password
@@ -132,7 +132,7 @@ jobs:
       
       # - name: Configure Scout APM
       #   run: |
-      #     $SSH "$TUTOR config save --set SCOUT_NAME='Edly Teak Sandbox' --set SCOUT_KEY=$SCOUT_APM_KEY"
+      #     $SSH "$TUTOR config save --set SCOUT_NAME='Edly Ulmo Sandbox' --set SCOUT_KEY=$SCOUT_APM_KEY"
       #   env:
       #     SCOUT_APM_KEY: ${{ secrets.SCOUT_APM_KEY }}
 
