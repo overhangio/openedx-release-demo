@@ -54,7 +54,6 @@ jobs:
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
-        # $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@v2.3.1#egg=tutor-contrib-aspects
         # $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
         # $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
         run: |
@@ -63,6 +62,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
+            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@ulmo-dev#egg=tutor-contrib-aspects
           "
       # Backup
       - name: Backup data
@@ -126,9 +126,9 @@ jobs:
       #   run: |
       #     $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
       
-      # - name: Configure Aspects
-      #   run: |
-      #     $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true --set ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS=true"
+      - name: Configure Aspects
+        run: |
+          $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true --set ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS=true"
       
       # - name: Configure Scout APM
       #   run: |
