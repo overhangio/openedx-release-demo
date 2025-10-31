@@ -12,9 +12,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SSH: ssh -o StrictHostKeyChecking=no -o TCPKeepAlive=yes -o ServerAliveInterval=150 -i ~/.ssh/demo.key ubuntu@teak.demo.edly.io
-      VERSION: teak
-      LMS_HOST: teak.demo.edly.io
+      SSH: ssh -o StrictHostKeyChecking=no -o TCPKeepAlive=yes -o ServerAliveInterval=150 -i ~/.ssh/demo.key tutor@ulmo.demo.edly.io
+      VERSION: main
+      LMS_HOST: ulmo.demo.edly.io
       VENV: ~/venv
       PIP: ~/venv/bin/pip
       TUTOR: ~/venv/bin/tutor
@@ -46,23 +46,21 @@ jobs:
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
       # pending:
+        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
+        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
+        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
+        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
+        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
+        # $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
+        # $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
         run: |
           $SSH "#! /bin/bash -e
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor.git@$VERSION#egg=tutor
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-mfe.git@$VERSION#egg=tutor-mfe
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
-            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
-            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
+            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@ulmo-dev#egg=tutor-contrib-aspects
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
-            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
-            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
-            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
-            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
-            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
-            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@v2.3.1#egg=tutor-contrib-aspects
-            $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
-            $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
           "
       # Backup
       - name: Backup data
@@ -106,8 +104,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-      # pending plugins: 
-        run: $SSH "$TUTOR plugins enable indigo mfe aspects codejail credentials discovery minio notes xqueue android jupyter forum webui scout-apm"
+      # pending plugins: codejail notes xqueue android jupyter forum scout-apm
+        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -115,26 +113,26 @@ jobs:
               --set LMS_HOST=$LMS_HOST \
               --set CMS_HOST=studio.$LMS_HOST \
               --set ENABLE_HTTPS=true \
-              --set PLATFORM_NAME='Open edX Teak Demo'
+              --set PLATFORM_NAME='Open edX Ulmo Demo'
           "
 
-      - name: Configure xqueue grader password
-        run: |
-          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+      # - name: Configure xqueue grader password
+      #   run: |
+      #     $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
 
-      - name: Configure Jupyter LTI Password
-        run: |
-          $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
+      # - name: Configure Jupyter LTI Password
+      #   run: |
+      #     $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
       
       - name: Configure Aspects
         run: |
           $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true --set ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS=true"
       
-      - name: Configure Scout APM
-        run: |
-          $SSH "$TUTOR config save --set SCOUT_NAME='Edly Teak Sandbox' --set SCOUT_KEY=$SCOUT_APM_KEY"
-        env:
-          SCOUT_APM_KEY: ${{ secrets.SCOUT_APM_KEY }}
+      # - name: Configure Scout APM
+      #   run: |
+      #     $SSH "$TUTOR config save --set SCOUT_NAME='Edly Ulmo Sandbox' --set SCOUT_KEY=$SCOUT_APM_KEY"
+      #   env:
+      #     SCOUT_APM_KEY: ${{ secrets.SCOUT_APM_KEY }}
 
       - name: Build Docker images
         run: |
@@ -142,8 +140,8 @@ jobs:
             $TUTOR images build all
           "
 
-      - name: Initialize codejail
-        run: $SSH "$TUTOR local do init --limit=codejail"
+      # - name: Initialize codejail
+      #   run: $SSH "$TUTOR local do init --limit=codejail"
 
       - name: Launch
         run: $SSH "$TUTOR local launch --non-interactive"
