@@ -46,14 +46,11 @@ jobs:
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
       # pending:
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-indigo.git@$VERSION#egg=tutor-indigo
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
         # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-webui.git@$VERSION#egg=tutor-webui
         # $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
         # $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
         run: |
@@ -63,6 +60,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-discovery.git@$VERSION#egg=tutor-discovery
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-credentials.git@$VERSION#egg=tutor-credentials
             $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@ulmo-dev#egg=tutor-contrib-aspects
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-minio.git@$VERSION#egg=tutor-minio
           "
       # Backup
       - name: Backup data
@@ -106,8 +104,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-      # pending plugins: indigo aspects codejail credentials discovery minio notes xqueue android jupyter forum webui scout-apm
-        run: $SSH "$TUTOR plugins enable mfe"
+      # pending plugins: codejail notes xqueue android jupyter forum scout-apm
+        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e

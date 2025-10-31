@@ -1,15 +1,13 @@
 # Open edX release demo platform CD
 
-⚠ This repo is read-only until the next major Open edX release. See you in Ulmo! (Oct. 2025)
-
-This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of April 24, 2025, it is used to deploy and configure a test instance of the Teak release.
+This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of April 24, 2025, it is used to deploy and configure a test instance of the Ulmo release.
 
 ⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss.openedx.org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
 
 URLs:
 
-- LMS: https://teak.demo.edly.io
-- Studio: https://studio.teak.demo.edly.io
+- LMS: https://ulmo.demo.edly.io
+- Studio: https://studio.ulmo.demo.edly.io
 
 You may log in with the following credentials:
 
@@ -28,27 +26,15 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- tutor-android ([PR](https://github.com/overhangio/tutor-android/pull/40) by @Abdul-Muqadim-Arbisoft)
-  - The mobile apk can be downloaded from https://mobile.teak.demo.edly.io/app.apk.
 - ~~tutor-cairn (TBA)~~
-  - tutor-contrib-aspects ([v2.3.1](https://github.com/openedx/tutor-contrib-aspects/tree/v2.3.1))
+  - tutor-contrib-aspects ([ulmo-dev](https://github.com/openedx/tutor-contrib-aspects/tree/ulmo-dev))
   - aspects has been enabled in place of cairn for testing of certain Product features.
-- tutor-contrib-codejail ([PR](https://github.com/eduNEXT/tutor-contrib-codejail/pull/68) by @MoisesGSalas)
-- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/56) by @mlabeeb03)
-- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/102) by @mlabeeb03)
-- tutor-forum ([PR](https://github.com/overhangio/tutor-forum/pull/68) by @DawoudSheraz)
-- tutor-indigo ([PR](https://github.com/overhangio/tutor-indigo/pull/138) by @HammadYousaf01)
-- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/248 by @DawoudSheraz)
-- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/60) by @Danyal-Faheem)
-- tutor-notes ([PR](https://github.com/overhangio/tutor-notes/pull/49) by @jfavellar90)
-- tutor-webui ([PR](https://github.com/overhangio/tutor-webui/pull/26) by @Abdul-Muqadim-Arbisoft)
-- tutor-xqueue ([PR](https://github.com/overhangio/tutor-xqueue/pull/41) by @jfavellar90)
-- tutor-jupyter ([PR](https://github.com/overhangio/tutor-jupyter/pull/24) by @Abdul-Muqadim-Arbisoft)
-  - LTI passport is `jupyterhub:openedx:jupyter-lti-password`.
-- [tutor-contrib-scout-apm](https://github.com/openedx/openedx-tutor-plugins/tree/main/plugins/tutor-contrib-scout-apm)
-  - Scout APM Key has been provided by Axim for Teak Testing
+- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/105) by @mlabeeb03)
+- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/59) by @mlabeeb03)
+- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/274 by @ahmed-arb)
+- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/67) by @rehmansheikh222)
 
-If you are interested in upgrading these plugins to Teak, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
+If you are interested in upgrading these plugins to Ulmo, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
 
 ## Testing
 
