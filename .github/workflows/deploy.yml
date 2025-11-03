@@ -144,7 +144,7 @@ jobs:
       #   run: $SSH "$TUTOR local do init --limit=codejail"
 
       - name: Launch
-        run: $SSH "$TUTOR local launch --non-interactive"
+        run: $SSH "$TUTOR local launch --skip-build --non-interactive"
 
       - name: "Provision: Create users"
         run: |
