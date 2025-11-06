@@ -26,15 +26,20 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- ~~tutor-cairn (TBA)~~
-  - tutor-contrib-aspects ([ulmo-dev](https://github.com/openedx/tutor-contrib-aspects/tree/ulmo-dev))
-  - aspects has been enabled in place of cairn for testing of certain Product features.
-- tutor-discovery ([PR](https://github.com/overhangio/tutor-discovery/pull/105) by @mlabeeb03)
-- tutor-credentials ([PR](https://github.com/overhangio/tutor-credentials/pull/59) by @mlabeeb03)
-- tutor-mfe ([PR](https://github.com/overhangio/tutor-mfe/pull/274 by @ahmed-arb)
-- tutor-minio ([PR](https://github.com/overhangio/tutor-minio/pull/67) by @rehmansheikh222)
+- ✅ tutor-contrib-aspects
+- ✅ tutor-mfe
+- ✅ tutor-credentials
+- ✅ tutor-discovery
+- ✅ tutor-minio
+- ✅ tutor-forum
+- ✅ tutor-notes
+- ✅ tutor-xqueue
+- ❌ tutor-android
+- ❌ tutor-jupyter
+- ✅ tutor-contrib-aspects
+- ✅ tutor-contrib-codejail
 
-If you are interested in upgrading these plugins to Ulmo, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488).
+If you are interested in upgrading these plugins to Ulmo, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488) and mention it in the [sandbox tracking ticket](https://github.com/overhangio/tutor/issues/1281).
 
 ## Testing
 
