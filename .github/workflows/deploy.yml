@@ -118,7 +118,7 @@ jobs:
 
       - name: Configure xqueue grader password
         run: |
-          $SSH "$TUTOR config save --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
+          $SSH "$TUTOR config save --set XQUEUE_REPOSITORY_VERSION=master --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
 
       # - name: Configure Jupyter LTI Password
       #   run: |
