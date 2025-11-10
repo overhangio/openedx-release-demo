@@ -46,8 +46,6 @@ jobs:
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
       # pending:
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
-        # $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
         # $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
         run: |
           $SSH "#! /bin/bash -e
@@ -59,6 +57,8 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-forum.git@$VERSION#egg=tutor-forum
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-notes.git@$VERSION#egg=tutor-notes
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
+            $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
             $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
             $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@ulmo-dev#egg=tutor-contrib-aspects
           "
@@ -104,8 +104,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-      # pending plugins: android jupyter scout-apm
-        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio forum notes xqueue codejail"
+      # pending plugins: scout-apm
+        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio forum notes xqueue codejail android jupyter"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -120,9 +120,9 @@ jobs:
         run: |
           $SSH "$TUTOR config save --set XQUEUE_REPOSITORY_VERSION=master --set XQUEUE_AUTH_PASSWORD=xqueuepassword"
 
-      # - name: Configure Jupyter LTI Password
-      #   run: |
-      #     $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
+      - name: Configure Jupyter LTI Password
+        run: |
+          $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
       
       - name: Configure Aspects
         run: |
