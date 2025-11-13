@@ -34,10 +34,11 @@ The following plugins are enabled on the demo platform:
 - ✅ tutor-forum
 - ✅ tutor-notes
 - ✅ tutor-xqueue
-- ❌ tutor-android
-- ❌ tutor-jupyter
+- ✅ tutor-android
+- ✅ tutor-jupyter
 - ✅ tutor-contrib-aspects
 - ✅ tutor-contrib-codejail
+- ✅ tutor-contrib-notifications
 
 If you are interested in upgrading these plugins to Ulmo, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488) and mention it in the [sandbox tracking ticket](https://github.com/overhangio/tutor/issues/1281).
 
