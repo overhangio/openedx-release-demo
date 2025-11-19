@@ -1,0 +1,89 @@
+name: Sync Release Branches
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'  # Weekly on Monday at 1 AM
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Release branch to sync (e.g., ulmo)'
+        required: true
+        default: 'ulmo'
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo:
+          - overhangio/tutor
+          - overhangio/tutor-mfe
+          - overhangio/tutor-discovery
+          - overhangio/tutor-credentials
+          - overhangio/tutor-minio
+          - overhangio/tutor-forum
+          - overhangio/tutor-notes
+          - overhangio/tutor-xqueue
+          - overhangio/tutor-android
+          - overhangio/tutor-jupyter
+      fail-fast: false  # Continue even if one repo fails
+    
+    steps:
+      - name: Checkout ${{ matrix.repo }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repo }}
+          token: ${{ secrets.PAT_TOKEN }}
+          fetch-depth: 0  # Fetch all history for rebase
+      
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Check and sync branch
+        env:
+          BRANCH: ${{ github.event.inputs.branch_name || 'ulmo' }}
+        run: |
+          # Fetch latest changes
+          git fetch origin
+          
+          # Check if there are new commits on main
+          git switch main
+          git pull
+          MAIN_COMMIT=$(git rev-parse origin/main)
+          
+          # Switch to release branch
+          git switch $BRANCH
+          git pull
+          BRANCH_COMMIT=$(git rev-parse $BRANCH)
+          
+          # Get the merge-base to check if rebase is needed
+          MERGE_BASE=$(git merge-base origin/main $BRANCH)
+          
+          if [ "$MERGE_BASE" = "$MAIN_COMMIT" ]; then
+            echo "✅ $BRANCH is already up to date with main"
+            exit 0
+          fi
+          
+          echo "🔄 Rebasing $BRANCH with origin/main..."
+          
+          # Rebase with main
+          if git rebase origin/main; then
+            echo "✅ Rebase successful"
+            git push -f origin $BRANCH
+            echo "✅ Force pushed to $BRANCH"
+          else
+            echo "❌ Rebase failed with conflicts"
+            git rebase --abort
+            exit 1
+          fi
+      
+      - name: Report status
+        if: always()
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "✅ Successfully synced ${{ matrix.repo }}"
+          else
+            echo "❌ Failed to sync ${{ matrix.repo }}"
+          fi
