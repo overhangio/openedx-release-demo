@@ -61,7 +61,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
             $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
             $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@ulmo-dev#egg=tutor-contrib-aspects
-            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-notifications.git@main#egg=tutor-contrib-notifications
+            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-notifications.git@ulmo#egg=tutor-contrib-notifications
           "
       # Backup
       - name: Backup data
@@ -124,11 +124,11 @@ jobs:
       - name: Configure Jupyter LTI Password
         run: |
           $SSH "$TUTOR config save --set JUPYTER_LTI_CLIENT_SECRET=jupyter-lti-password"
-      
+
       - name: Configure Aspects
         run: |
           $SSH "$TUTOR config save --set ASPECTS_ENABLE_PII=true --set ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS=true"
-      
+
       # - name: Configure Scout APM
       #   run: |
       #     $SSH "$TUTOR config save --set SCOUT_NAME='Edly Ulmo Sandbox' --set SCOUT_KEY=$SCOUT_APM_KEY"
