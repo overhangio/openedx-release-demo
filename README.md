@@ -26,19 +26,18 @@ The [deployment script](https://github.com/overhangio/openedx-release-demo/blob/
 
 The following plugins are enabled on the demo platform:
 
-- ✅ tutor-contrib-aspects
-- ✅ tutor-mfe
-- ✅ tutor-credentials
-- ✅ tutor-discovery
-- ✅ tutor-minio
-- ✅ tutor-forum
-- ✅ tutor-notes
-- ✅ tutor-xqueue
-- ✅ tutor-android
-- ✅ tutor-jupyter
-- ✅ tutor-contrib-aspects
-- ✅ tutor-contrib-codejail
-- ✅ tutor-contrib-notifications
+- ✅ [tutor-mfe](https://github.com/overhangio/tutor-mfe/tree/ulmo)
+- ✅ [tutor-discovery](https://github.com/overhangio/tutor-discovery/tree/ulmo)
+- ✅ [tutor-credentials](https://github.com/overhangio/tutor-credentials/tree/ulmo)
+- ✅ [tutor-minio](https://github.com/overhangio/tutor-minio/tree/ulmo)
+- ✅ [tutor-forum](https://github.com/overhangio/tutor-forum/tree/ulmo)
+- ✅ [tutor-notes](https://github.com/overhangio/tutor-notes/tree/ulmo)
+- ✅ [tutor-xqueue](https://github.com/overhangio/tutor-xqueue/tree/ulmo)
+- ✅ [tutor-android](https://github.com/overhangio/tutor-android/tree/ulmo)
+- ✅ [tutor-jupyter](https://github.com/overhangio/tutor-jupyter/tree/ulmo)
+- ✅ [tutor-contrib-codejail](https://github.com/eduNEXT/tutor-contrib-codejail/tree/ulmo)
+- ✅ [tutor-contrib-aspects](https://github.com/openedx/tutor-contrib-aspects/tree/ulmo-dev)
+- ✅ [tutor-contrib-notifications](https://github.com/openedx/tutor-contrib-notifications/tree/ulmo)
 
 If you are interested in upgrading these plugins to Ulmo, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488) and mention it in the [sandbox tracking ticket](https://github.com/overhangio/tutor/issues/1281).
 

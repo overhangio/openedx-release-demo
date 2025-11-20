@@ -61,7 +61,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
             $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
             $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@ulmo-dev#egg=tutor-contrib-aspects
-            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-notifications.git@ulmo#egg=tutor-contrib-notifications
+            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-notifications.git@$VERSION#egg=tutor-contrib-notifications
           "
       # Backup
       - name: Backup data
