@@ -58,6 +58,41 @@ Then run::
 
 We need to be careful not to exceed the disk space and the server memory to avoid filled disks, excessive build times and crashes.
 
+### Prerequisites
+
+Install the utilities required to run the platform:
+
+    #!/usr/bin/env bash
+
+    set -e
+
+    # DOCKER CONFIG
+    # Add Docker's official GPG key:
+    sudo apt update
+    sudo apt install ca-certificates curl python3.12-venv -y
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    # Add the repository to Apt sources:
+    sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+    Types: deb
+    URIs: https://download.docker.com/linux/ubuntu
+    Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+    Components: stable
+    Signed-By: /etc/apt/keyrings/docker.asc
+    EOF
+
+    sudo apt update
+
+    sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    sudo systemctl status docker
+
+    docker compose version
+
+    sudo usermod -aG docker "$USER"
+
 ### Docker builder
 
 We must configure the docker builder not to use more than 4 CPU and always leave some free space on disk. Edit `buildkit.toml` and add the following content:
@@ -118,6 +153,20 @@ And start it with:
 
     docker compose up -d
 
+## Troubleshooting
+
+### Connection timout
+If you get a connection timeout error while applying migrations:
+
+    botocore.exceptions.ConnectTimeoutError: Connect timeout on endpoint URL:
+
+Then disable `ufw`:
+
+    sudo ufw disable
+
+Verify with:
+
+    sudo ufw status
 ## License
 
 This work is licensed under the terms of the [GNU Affero General Public License (AGPL)](https://github.com/overhangio/tutor/blob/master/LICENSE.txt).
