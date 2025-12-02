@@ -25,7 +25,7 @@ jobs:
       PIP: ~/venv/bin/pip
       TUTOR: ~/venv/bin/tutor
       # Always clear data, unless it's a manually triggered workflow and it was unchecked.
-      CLEAR_DATA: ${{ inputs.CLEAR_DATA == false && 'false' || 'true' }}
+      CLEAR_DATA: ${{ github.event_name == 'schedule' || inputs.CLEAR_DATA != false }}
     steps:
       - name: Configure SSH
         run: |
