@@ -26,6 +26,7 @@ jobs:
           - overhangio/tutor-xqueue
           - overhangio/tutor-android
           - overhangio/tutor-jupyter
+          - overhangio/tutor-deck
       fail-fast: false  # Continue even if one repo fails
     
     steps:
