@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Release branch to sync (e.g., ulmo)'
+        description: 'Release branch to sync (e.g., verawood)'
         required: true
-        default: 'ulmo'
+        default: 'verawood'
 
 jobs:
   sync-branches:
@@ -44,7 +44,7 @@ jobs:
       
       - name: Check and sync branch
         env:
-          BRANCH: ${{ github.event.inputs.branch_name || 'ulmo' }}
+          BRANCH: ${{ github.event.inputs.branch_name || 'verawood' }}
         run: |
           # Fetch latest changes
           git fetch origin
