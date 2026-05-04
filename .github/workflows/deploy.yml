@@ -18,9 +18,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      SSH: ssh -o StrictHostKeyChecking=no -o TCPKeepAlive=yes -o ServerAliveInterval=150 -i ~/.ssh/demo.key tutor@ulmo.demo.edly.io
-      VERSION: ulmo
-      LMS_HOST: ulmo.demo.edly.io
+      SSH: ssh -o StrictHostKeyChecking=no -o TCPKeepAlive=yes -o ServerAliveInterval=150 -i ~/.ssh/demo.key tutor@verawood.demo.edly.io
+      VERSION: verawood
+      LMS_HOST: verawood.demo.edly.io
       VENV: ~/venv
       PIP: ~/venv/bin/pip
       TUTOR: ~/venv/bin/tutor
@@ -54,6 +54,8 @@ jobs:
       # apt update && apt install -y python3-pip
       - name: Install dependencies, tutor and plugins (from source)
       # pending:
+        # $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
+        # $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-notifications.git@$VERSION#egg=tutor-contrib-notifications
         # $PIP install --upgrade git+https://github.com/openedx/openedx-tutor-plugins.git#subdirectory=plugins/tutor-contrib-scout-apm
         run: |
           $SSH "#! /bin/bash -e
@@ -67,9 +69,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-xqueue.git@$VERSION#egg=tutor-xqueue
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
-            $PIP install --upgrade --editable git+https://github.com/eduNEXT/tutor-contrib-codejail.git@$VERSION#egg=tutor-contrib-codejail
-            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@ulmo-dev#egg=tutor-contrib-aspects
-            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-notifications.git@$VERSION#egg=tutor-contrib-notifications
+            $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@$VERSION#egg=tutor-contrib-aspects
           "
       # Backup
       - name: Backup data
@@ -116,8 +116,8 @@ jobs:
           "
       # Configure
       - name: Enable plugins
-      # pending plugins: scout-apm
-        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio forum notes xqueue codejail android jupyter notifications"
+      # pending plugins: codejail notifications scout-apm
+        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio forum notes xqueue android jupyter"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
@@ -125,7 +125,7 @@ jobs:
               --set LMS_HOST=$LMS_HOST \
               --set CMS_HOST=studio.$LMS_HOST \
               --set ENABLE_HTTPS=true \
-              --set PLATFORM_NAME='Open edX Ulmo Demo'
+              --set PLATFORM_NAME='Open edX Verawood Demo'
           "
 
       - name: Configure xqueue grader password
@@ -152,8 +152,8 @@ jobs:
             $TUTOR images build all
           "
 
-      - name: Initialize codejail
-        run: $SSH "$TUTOR local do init --limit=codejail"
+      # - name: Initialize codejail
+      #   run: $SSH "$TUTOR local do init --limit=codejail"
 
       - name: Launch
         run: $SSH "$TUTOR local launch --skip-build --non-interactive"
