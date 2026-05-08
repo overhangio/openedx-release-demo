@@ -80,11 +80,10 @@ jobs:
             exit 1
           fi
       
-      - name: Report status
-        if: always()
-        run: |
-          if [ $? -eq 0 ]; then
-            echo "✅ Successfully synced ${{ matrix.repo }}"
-          else
-            echo "❌ Failed to sync ${{ matrix.repo }}"
-          fi
+      - name: Report success
+        if: success()
+        run: echo "✅ Successfully synced ${{ matrix.repo }}"
+
+      - name: Report failure
+        if: failure()
+        run: echo "❌ Failed to sync ${{ matrix.repo }}"
