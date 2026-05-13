@@ -70,6 +70,7 @@ jobs:
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-android.git@$VERSION#egg=tutor-android
             $PIP install --upgrade --editable git+https://github.com/overhangio/tutor-jupyter.git@$VERSION#egg=tutor-jupyter
             $PIP install --upgrade --editable git+https://github.com/openedx/tutor-contrib-aspects.git@$VERSION#egg=tutor-contrib-aspects
+            $PIP install --upgrade --editable git+https://github.com/edly-io/tutor-portainer.git#egg=tutor-portainer
           "
       # Backup
       - name: Backup data
@@ -117,7 +118,7 @@ jobs:
       # Configure
       - name: Enable plugins
       # pending plugins: codejail notifications scout-apm
-        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio forum notes xqueue android jupyter"
+        run: $SSH "$TUTOR plugins enable mfe aspects credentials discovery minio forum notes xqueue android jupyter portainer"
       - name: Configure tutor settings
         run: |
           $SSH "#! /bin/bash -e
