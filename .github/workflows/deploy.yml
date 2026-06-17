@@ -184,8 +184,8 @@ jobs:
             $TUTOR images build all
           "
 
-      # - name: Initialize codejail
-      #   run: $SSH "$TUTOR local do init --limit=codejail"
+      - name: Initialize codejail
+        run: $SSH "$TUTOR local do init --limit=codejail"
 
       - name: Restore portainer data
         if: env.CLEAR_DATA == 'true'
