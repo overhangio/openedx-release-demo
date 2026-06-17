@@ -36,6 +36,7 @@ The following plugins are enabled on the demo platform:
 - ✅ [tutor-android](https://github.com/overhangio/tutor-android/pull/51)
 - ✅ [tutor-jupyter](https://github.com/overhangio/tutor-jupyter/pull/36)
 - ✅ [tutor-contrib-aspects](https://github.com/openedx/tutor-contrib-aspects/tree/verawood)
+- ✅ [tutor-contrib-codejail](https://github.com/eduNEXT/tutor-contrib-codejail/pull/79)
 
 If you are interested in upgrading these plugins to Verawood, please submit a PR by following the regular [plugin upgrade instructions](https://discuss.overhang.io/t/how-to-upgrade-a-tutor-plugin/1488) and mention it in the [sandbox tracking ticket](https://github.com/overhangio/tutor/issues/1370).
 
