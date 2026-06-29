@@ -171,6 +171,17 @@ jobs:
               '    )' \
               ')' > \"\$PLUGIN_ROOT/authz_course_authoring.py\"
             $TUTOR plugins enable authz_course_authoring
+
+      - name: Enable course import in library
+        run: |
+          cat > $(tutor plugins printroot)/enable-course-import.yml << 'EOF'
+          name: enable-course-import
+          patches:
+            mfe-lms-production-settings: |
+              MFE_CONFIG["ENABLE_COURSE_IMPORT_IN_LIBRARY"] = True
+          EOF
+          $SSH "tutor plugins enable enable-course-import && tutor config save"
+
           "
       # - name: Configure Scout APM
       #   run: |
