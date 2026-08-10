@@ -1,8 +1,10 @@
 # Open edX release demo platform CD
 
+⚠️ Archived until the next major Open edX release comes out.
+
 This repo holds the continuous deployment (CD) scripts to deploy the Open edX release demo platforms. As of April 23, 2026, it is used to deploy and configure a test instance of the Verawood release.
 
-⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss.openedx.org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
+⚠ THIS REPO IS NOT FOR PUBLIC CONSUMPTION ⚠ It is only used to deploy and configure a test instance for the [Build/Test/Release working group](https://discuss. .org/c/working-groups/build-test-release/30). Detected issues should be reported to the working group.
 
 URLs:
 
